@@ -14,6 +14,10 @@ public class Magnet : MonoBehaviour {
     private float shootTimer;
     private MagnetState magnetState;
 
+    private void Start() {
+        OnMagnetStateChanged(magnetState);
+    }
+
     private void Update() {
         HandleMagnetSwitching();
         HandleShooting();
@@ -26,6 +30,7 @@ public class Magnet : MonoBehaviour {
             } else {
                 magnetState = MagnetState.Pull;
             }
+            OnMagnetStateChanged(magnetState);
         }
     }
 

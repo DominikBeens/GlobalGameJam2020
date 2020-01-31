@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class HUD : MonoBehaviour {
 
@@ -22,8 +23,8 @@ public class HUD : MonoBehaviour {
         Magnet.OnMagnetStateChanged += OnMagnetStateChangedHandler;
     }
 
-    private void Update() {
-        
+    private void OnDestroy() {
+        Magnet.OnMagnetStateChanged -= OnMagnetStateChangedHandler;
     }
 
     private void OnMagnetStateChangedHandler(MagnetState state) {
@@ -32,5 +33,6 @@ public class HUD : MonoBehaviour {
         magnetStateBackground.color = stateData.BackgroundColor;
         magnetStateFill.color = stateData.Color;
         stateData.GameObject.SetActive(true);
+        stateData.GameObject.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
     }
 }
