@@ -33,8 +33,7 @@ public class Meteorite : MonoBehaviour {
         MeteoritesManager.instance.NewMeteorite();
         Destroy(gameObject);
     }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionEnter(Collision collision) {
         Debug.LogError("Collision");
         if (collision.gameObject.GetComponent<Meteorite>() != null) {
             if (bounced == false) {
@@ -79,14 +78,13 @@ public class Meteorite : MonoBehaviour {
             Debug.LogError("DESTROYED!");
             bounced = true;
             Destroy(collision.gameObject);
-        } else if(collision.gameObject.GetComponent<Movement>() != null) {
+        } else if (collision.gameObject.GetComponent<Movement>() != null) {
             if (myData.isPositiveM) {
                 print("Good Object!");
             } else {
                 print("Bad Object!");
             }
         }
-
     }
 
     public void Bounce(bool _speed) {
