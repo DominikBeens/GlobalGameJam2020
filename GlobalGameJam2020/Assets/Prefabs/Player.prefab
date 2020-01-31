@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534350520df057b43bbfbcae84d34d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootCooldown: 1
+  shootCooldown: 0.1
   magnetRayPrefab: {fileID: 3551069789573220589, guid: ca9785bdbbdfbbe4db4d330429bff562,
     type: 3}
   shootPoint: {fileID: 461841294}

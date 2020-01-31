@@ -7,7 +7,6 @@ public class MagnetRay : MonoBehaviour {
 
     [SerializeField] private float force = 150f;
     [SerializeField] private float forceDeceleration = 0.01f;
-    [SerializeField] private float destroyAfterHitTime = 0.2f;
     [SerializeField] private Transform rayHolder;
 
     [Header("Animation")]
@@ -53,7 +52,7 @@ public class MagnetRay : MonoBehaviour {
         if (!meteorite) { return; }
         Vector3 direction = magnetState == MagnetState.Push ? transform.forward : -transform.forward;
         //meteorite.rigidbody.AddForce(direction * force);
-        Destroy(gameObject, destroyAfterHitTime);
+        Destroy(gameObject);
     }
 
     private IEnumerator StartAnimation() {
@@ -74,7 +73,6 @@ public class MagnetRay : MonoBehaviour {
             }).OnComplete(() => {
                 ray.DOScaleX(targetIdleScale, scaleOutDuration);
             });
-            lastStartDuration = scaleOutDuration + delay;
         }
 
         if (magnetState == MagnetState.Pull) {
