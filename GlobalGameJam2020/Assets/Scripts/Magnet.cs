@@ -10,6 +10,7 @@ public class Magnet : MonoBehaviour {
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private MagnetRay magnetRayPrefab;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private LookAtMouse lookAt;
 
     private float shootTimer;
     private MagnetState magnetState;
@@ -37,10 +38,12 @@ public class Magnet : MonoBehaviour {
     private void HandleShooting() {
         if (shootTimer > 0) {
             shootTimer -= Time.deltaTime;
+            lookAt.SetLookAt(true);
             return;
         }
 
         if (Input.GetMouseButton(0)) {
+            lookAt.SetLookAt(false);
             shootTimer = shootCooldown;
             Shoot();
         }

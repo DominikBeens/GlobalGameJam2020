@@ -8,6 +8,7 @@ public class MagnetRay : MonoBehaviour {
     [SerializeField] private float force = 150f;
     [SerializeField] private float forceDeceleration = 0.01f;
     [SerializeField] private Transform rayHolder;
+    [SerializeField] private float pushPullForce = 150f;
 
     [Header("Animation")]
     [SerializeField] private float startDelay = 0.1f;
@@ -51,7 +52,7 @@ public class MagnetRay : MonoBehaviour {
         Meteorite meteorite = other.GetComponent<Meteorite>();
         if (!meteorite) { return; }
         Vector3 direction = magnetState == MagnetState.Push ? transform.forward : -transform.forward;
-        meteorite.SetDirection(direction, force);
+        meteorite.SetDirection(direction, pushPullForce);
         Destroy(gameObject);
     }
 

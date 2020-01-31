@@ -63,6 +63,7 @@ MonoBehaviour:
   magnetRayPrefab: {fileID: 3551069789573220589, guid: ca9785bdbbdfbbe4db4d330429bff562,
     type: 3}
   shootPoint: {fileID: 461841294}
+  lookAt: {fileID: 269169391}
 --- !u!1 &461841293
 GameObject:
   m_ObjectHideFlags: 0

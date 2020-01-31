@@ -205,6 +205,7 @@ MonoBehaviour:
   force: 10
   forceDeceleration: 0.01
   rayHolder: {fileID: 4944132922432221015}
+  pushPullForce: 150
   startDelay: 0.1
   scaleInDuration: 0.2
   scaleOutDuration: 0.3
