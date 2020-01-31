@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  scale: 1
+  scale: 0.3
 --- !u!1 &8404568429251574803
 GameObject:
   m_ObjectHideFlags: 0

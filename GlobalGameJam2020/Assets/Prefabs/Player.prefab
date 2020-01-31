@@ -311,7 +311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  maxMovementTime: 2
+  startMovementSpeed: 1000
+  maxMovementSpeed: 2
   playerBoundaries: {x: 5, y: 5}
   movementTimer: 0
   fillImage: {fileID: 0}
