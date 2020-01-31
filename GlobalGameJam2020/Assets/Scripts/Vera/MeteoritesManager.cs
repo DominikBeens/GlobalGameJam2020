@@ -109,5 +109,6 @@ public class MeteoritesManager : MonoBehaviour
 public class MeteoriteData {
     public GameObject gObj;
     public GameObject smallGObj;
-    public int MeteoriteType;
+    public List<GameObject> parts = new List<GameObject>();
+    public bool isPositiveM;
 }

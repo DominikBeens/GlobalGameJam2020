@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &278747229416946571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247384067162532793}
+  - component: {fileID: 7423780587823163220}
+  m_Layer: 0
+  m_Name: MeteoriteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &247384067162532793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278747229416946571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 77.26142, y: -69.80206, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7423780587823163220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278747229416946571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6443977d37004704e9e8ebb65a869043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  range: 2
+  sizeMeteorite: 1
+  randomChance: 50
+  minSpeed: 2
+  maxSpeed: 4
+  maxAmount: 20
+  bounds: {x: -12, y: 12, z: 7, w: -7}
+  allMeteorites:
+  - gObj: {fileID: 5178267159911876452, guid: 72b3b62ff92cc29428b2ea2101cb4df4, type: 3}
+    smallGObj: {fileID: 5178267159911876452, guid: 4da39d5ffd24f19498f1d2d7f59e447c,
+      type: 3}
+    parts: []
+    isPositiveM: 0
+  - gObj: {fileID: 5178267159911876452, guid: 38c6fc10ecfd5ce4a894d095aa77def9, type: 3}
+    smallGObj: {fileID: 5178267159911876452, guid: 4da39d5ffd24f19498f1d2d7f59e447c,
+      type: 3}
+    parts: []
+    isPositiveM: 1
