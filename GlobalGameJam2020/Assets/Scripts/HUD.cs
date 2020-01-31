@@ -5,11 +5,19 @@ using DG.Tweening;
 
 public class HUD : MonoBehaviour {
 
+    [SerializeField] private Transform container;
+    [Space]
     [SerializeField] private Image magnetStateBackground;
     [SerializeField] private Image magnetStateFill;
     [SerializeField] private List<MagnetStateImage> magnetStateImages = new List<MagnetStateImage>();
     [Space]
     [SerializeField] private Image playerMoveCooldownFill;
+    [SerializeField] private Color fullPlayerMoveCooldownColor;
+    [SerializeField] private Color emptyPlayerMoveCooldownColor;
+    [SerializeField] private float playerMoveCooldownShakeStrength = 5f;
+
+    private float previousCharge;
+    private bool shaking;
 
     [System.Serializable]
     private struct MagnetStateImage {
@@ -40,5 +48,13 @@ public class HUD : MonoBehaviour {
 
     private void OnChangeChangedHandler(float charge) {
         playerMoveCooldownFill.fillAmount = charge;
+        playerMoveCooldownFill.color = Color.Lerp(emptyPlayerMoveCooldownColor, fullPlayerMoveCooldownColor, playerMoveCooldownFill.fillAmount);
+        if (charge < previousCharge && !shaking) {
+            shaking = true;
+            container.DOShakePosition(0.05f, playerMoveCooldownShakeStrength).OnComplete(() => { 
+                shaking = false;
+            });
+        }
+        previousCharge = charge;
     }
 }
