@@ -274,7 +274,7 @@ MonoBehaviour:
   idleStartDelay: 0.1
   targetIdleWobbleScale: 0.8
   targetIdleWobbleSpeed: 0.25
-  idleWobbleInterval: 0.2
+  idleWobbleInterval: 0.75
 --- !u!54 &1591740317373124775
 Rigidbody:
   m_ObjectHideFlags: 0

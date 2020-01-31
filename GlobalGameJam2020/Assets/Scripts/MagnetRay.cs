@@ -32,6 +32,7 @@ public class MagnetRay : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody>();
         currentForce = force;
         initialized = true;
+        nextWobble = Mathf.Infinity;
         StartCoroutine(StartAnimation());
     }
 
@@ -39,7 +40,6 @@ public class MagnetRay : MonoBehaviour {
         if (!initialized) { return; }
         rigidbody.velocity = transform.up * currentForce;
         currentForce -= forceDeceleration;
-        nextWobble = Mathf.Infinity;
 
         if (currentForce <= 1f) {
             Destroy(gameObject);
@@ -74,12 +74,16 @@ public class MagnetRay : MonoBehaviour {
             lastStartDuration = scaleOutDuration + delay;
         }
 
+        if (magnetState == MagnetState.Pull) {
+            rayObjects.Reverse();
+        }
+
         yield return new WaitForSeconds(lastStartDuration);
-        nextWobble = Time.time + idleWobbleInterval;
+        nextWobble = Time.time;
     }
 
     private void HandleWobble() {
-        if (Time.time <= nextWobble) { return; }
+        if (Time.time < nextWobble) { return; }
         nextWobble = Time.time + idleWobbleInterval;
 
         for (int i = 0; i < rayObjects.Count; i++) {
