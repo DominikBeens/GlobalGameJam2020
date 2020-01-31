@@ -51,7 +51,7 @@ public class MagnetRay : MonoBehaviour {
         Meteorite meteorite = other.GetComponent<Meteorite>();
         if (!meteorite) { return; }
         Vector3 direction = magnetState == MagnetState.Push ? transform.forward : -transform.forward;
-        //meteorite.rigidbody.AddForce(direction * force);
+        meteorite.SetDirection(direction, force);
         Destroy(gameObject);
     }
 
