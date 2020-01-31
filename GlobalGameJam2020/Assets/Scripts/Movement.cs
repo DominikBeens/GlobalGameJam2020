@@ -1,24 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
+    //public static event Action<MagnetState> OnMagnetStateChanged = delegate {};
+
     [SerializeField] private float movementSpeed;
     [SerializeField] private float maxMovementSpeed;
     [SerializeField] private Vector2 playerBoundaries;
     public float movementTimer;
     private Rigidbody myRB;
 
+    //Test
+    public Image fillImage;
+
     void Awake() {
         myRB = GetComponent<Rigidbody>();
     }
 
+    bool moving = false;
     void Update() {
+        moving = MovementUpdate();
 
-        if (movementTimer < maxMovementSpeed && MovementUpdate() == false) {
+        if (moving == true && movementTimer - Time.deltaTime * 2 < 0 && movementTimer > 0) {
+            movementTimer -= 1;
+        }
+
+        if (movementTimer < maxMovementSpeed && moving == false || movementTimer <= 0) {
             movementTimer += Time.deltaTime * 2;
-        } else {
-            MovementUpdate();
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -playerBoundaries.x, playerBoundaries.x), Mathf.Clamp(transform.position.y, -playerBoundaries.y, playerBoundaries.y), 0);
@@ -27,8 +37,10 @@ public class Movement : MonoBehaviour {
             myRB.velocity = new Vector3(0, myRB.velocity.y, myRB.velocity.z);
         }
         if (transform.position.y == -playerBoundaries.y || transform.position.y == playerBoundaries.y) {
-            myRB.velocity = new Vector3(myRB.velocity.x,0, myRB.velocity.z);
+            myRB.velocity = new Vector3(myRB.velocity.x, 0, myRB.velocity.z);
         }
+
+        fillImage.fillAmount = movementTimer / maxMovementSpeed;
     }
 
     bool hasMoved;
