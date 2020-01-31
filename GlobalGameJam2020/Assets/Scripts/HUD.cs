@@ -21,10 +21,12 @@ public class HUD : MonoBehaviour {
 
     private void Awake() {
         Magnet.OnMagnetStateChanged += OnMagnetStateChangedHandler;
+        Movement.OnChangeChanged += OnChangeChangedHandler;
     }
 
     private void OnDestroy() {
         Magnet.OnMagnetStateChanged -= OnMagnetStateChangedHandler;
+        Movement.OnChangeChanged -= OnChangeChangedHandler;
     }
 
     private void OnMagnetStateChangedHandler(MagnetState state) {
@@ -34,5 +36,9 @@ public class HUD : MonoBehaviour {
         magnetStateFill.color = stateData.Color;
         stateData.GameObject.SetActive(true);
         stateData.GameObject.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
+    }
+
+    private void OnChangeChangedHandler(float charge) {
+        playerMoveCooldownFill.fillAmount = charge;
     }
 }
