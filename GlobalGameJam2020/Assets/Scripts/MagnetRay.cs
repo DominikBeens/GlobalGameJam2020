@@ -21,15 +21,18 @@ public class MagnetRay : MonoBehaviour {
     [SerializeField] private float idleWobbleInterval = 0.5f;
 
     private new Rigidbody rigidbody;
+    private new Collider collider;
     private MagnetState magnetState;
     private bool initialized;
     private float currentForce;
     private List<Transform> rayObjects = new List<Transform>();
     private float nextWobble;
+    private bool destroying;
 
     public void Initialize(MagnetState magnetState) {
         this.magnetState = magnetState;
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
         currentForce = force;
         initialized = true;
         nextWobble = Mathf.Infinity;
@@ -42,7 +45,7 @@ public class MagnetRay : MonoBehaviour {
         currentForce -= forceDeceleration;
 
         if (currentForce <= 1f) {
-            Destroy(gameObject);
+            DestroyRay();
         }
 
         HandleWobble();
@@ -53,7 +56,7 @@ public class MagnetRay : MonoBehaviour {
         if (!meteorite) { return; }
         Vector3 direction = magnetState == MagnetState.Push ? transform.up : -transform.up;
         meteorite.SetDirection(direction, pushPullForce);
-        Destroy(gameObject);
+        DestroyRay();
     }
 
     private IEnumerator StartAnimation() {
@@ -94,5 +97,32 @@ public class MagnetRay : MonoBehaviour {
                 ray.DOScaleX(targetIdleScale, targetIdleWobbleSpeed);
             });
         }
+    }
+
+    private void DestroyRay() {
+        if (destroying) { return; }
+        destroying = true;
+        nextWobble = Mathf.Infinity;
+        StartCoroutine(DestroyRoutine());
+    }
+
+    private IEnumerator DestroyRoutine() {
+        foreach (Transform ray in rayObjects) {
+            ray.DOKill();
+        }
+
+        Destroy(collider);
+
+        if (magnetState == MagnetState.Pull) {
+            rayObjects.Reverse();
+        }
+
+        for (int i = rayObjects.Count - 1; i >= 0; i--) {
+            Transform ray = rayObjects[i];
+            ray.DOScaleX(0, 0.1f).SetDelay(0.05f * i);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 }
