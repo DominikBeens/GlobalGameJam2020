@@ -8,7 +8,8 @@ public class Movement : MonoBehaviour {
     public static event Action<float> OnChangeChanged = delegate {};
 
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float maxMovementTime;
+    [SerializeField] private float startMovementSpeed = 1000;
+    [SerializeField] private float maxMovementSpeed;
     [SerializeField] private Vector2 playerBoundaries;
     public float movementTimer;
     private Rigidbody myRB;
@@ -28,7 +29,7 @@ public class Movement : MonoBehaviour {
             movementTimer -= 1;
         }
 
-        if (movementTimer < maxMovementTime && moving == false || movementTimer <= 0) {
+        if (movementTimer < maxMovementSpeed && moving == false || movementTimer <= 0) {
             movementTimer += Time.deltaTime * 2;
         }
 
@@ -41,51 +42,50 @@ public class Movement : MonoBehaviour {
             myRB.velocity = new Vector3(myRB.velocity.x, 0, myRB.velocity.z);
         }
 
-        OnChangeChanged(movementTimer / maxMovementTime);
+        OnChangeChanged(movementTimer / maxMovementSpeed);
     }
 
     bool hasMoved;
     public bool MovementUpdate() {
         hasMoved = false;
-
-        if (Input.GetAxis("Horizontal") > 0.1f) {
-            if (movementTimer > 0) {
-                if (Input.GetButtonDown("Horizontal")) {
-                    myRB.AddForce(Vector3.right * (movementSpeed * 30));
-                } else {
-                    myRB.AddForce(Vector3.right * movementSpeed);
-                }
+        if (movementTimer > 0) {
+            if (Input.GetAxis("Horizontal") > 0.05f) {
+                myRB.AddForce(Vector3.right * movementSpeed);
                 movementTimer -= Time.deltaTime;
+                hasMoved = true;
+            } else if (Input.GetButtonDown("Horizontal") && Input.GetAxis("Horizontal") > 0) {
+                myRB.AddForce(Vector3.right * startMovementSpeed);
+                hasMoved = true;
             }
-            hasMoved = true;
-        } else {
 
-        }
-
-        if (Input.GetAxis("Horizontal") < -0.1f) {
-            if (movementTimer > 0) {
+            if (Input.GetAxis("Horizontal") < -0.05f) {
                 myRB.AddForce(Vector3.left * movementSpeed);
                 movementTimer -= Time.deltaTime;
+                hasMoved = true;
+            } else if (Input.GetButtonDown("Horizontal") && Input.GetAxis("Horizontal") < 0) {
+                myRB.AddForce(Vector3.left * startMovementSpeed);
+                hasMoved = true;
             }
-            hasMoved = true;
-        }
 
-        if (Input.GetAxis("Vertical") > 0.1f) {
-            if (movementTimer > 0) {
+            if (Input.GetAxis("Vertical") > 0.05f) {
                 myRB.AddForce(Vector3.up * movementSpeed);
                 movementTimer -= Time.deltaTime;
+                hasMoved = true;
+            } else if (Input.GetButtonDown("Vertical") && Input.GetAxis("Vertical") > 0) {
+                myRB.AddForce(Vector3.up * startMovementSpeed);
+                hasMoved = true;
             }
-            hasMoved = true;
-        }
 
-        if (Input.GetAxis("Vertical") < -0.1f) {
-            if (movementTimer > 0) {
+            if (Input.GetAxis("Vertical") < -0.05f) {
                 myRB.AddForce(Vector3.down * movementSpeed);
                 movementTimer -= Time.deltaTime;
+                hasMoved = true;
+            } else if (Input.GetButtonDown("Vertical") && Input.GetAxis("Vertical") < 0) {
+                myRB.AddForce(Vector3.down * startMovementSpeed);
+                hasMoved = true;
             }
-            hasMoved = true;
-        }
 
+        }
         return hasMoved;
     }
 }
