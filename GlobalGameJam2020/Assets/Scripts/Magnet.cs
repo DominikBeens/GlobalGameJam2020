@@ -38,7 +38,6 @@ public class Magnet : MonoBehaviour {
     private void HandleShooting() {
         if (shootTimer > 0) {
             shootTimer -= Time.deltaTime;
-            lookAt.SetLookAt(true);
             return;
         }
 
@@ -46,6 +45,8 @@ public class Magnet : MonoBehaviour {
             lookAt.SetLookAt(false);
             shootTimer = shootCooldown;
             Shoot();
+        } else {
+            lookAt.SetLookAt(true);
         }
     }
 
