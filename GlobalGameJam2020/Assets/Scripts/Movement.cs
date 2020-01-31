@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
-    //public static event Action<MagnetState> OnMagnetStateChanged = delegate {};
+    public static event Action<float> OnChangeChanged = delegate {};
 
     [SerializeField] private float movementSpeed;
-    [SerializeField] private float maxMovementSpeed;
+    [SerializeField] private float maxMovementTime;
     [SerializeField] private Vector2 playerBoundaries;
     public float movementTimer;
     private Rigidbody myRB;
@@ -27,7 +28,7 @@ public class Movement : MonoBehaviour {
             movementTimer -= 1;
         }
 
-        if (movementTimer < maxMovementSpeed && moving == false || movementTimer <= 0) {
+        if (movementTimer < maxMovementTime && moving == false || movementTimer <= 0) {
             movementTimer += Time.deltaTime * 2;
         }
 
@@ -40,7 +41,7 @@ public class Movement : MonoBehaviour {
             myRB.velocity = new Vector3(myRB.velocity.x, 0, myRB.velocity.z);
         }
 
-        fillImage.fillAmount = movementTimer / maxMovementSpeed;
+        OnChangeChanged(movementTimer / maxMovementTime);
     }
 
     bool hasMoved;
@@ -49,10 +50,16 @@ public class Movement : MonoBehaviour {
 
         if (Input.GetAxis("Horizontal") > 0.1f) {
             if (movementTimer > 0) {
-                myRB.AddForce(Vector3.right * movementSpeed);
+                if (Input.GetButtonDown("Horizontal")) {
+                    myRB.AddForce(Vector3.right * (movementSpeed * 30));
+                } else {
+                    myRB.AddForce(Vector3.right * movementSpeed);
+                }
                 movementTimer -= Time.deltaTime;
             }
             hasMoved = true;
+        } else {
+
         }
 
         if (Input.GetAxis("Horizontal") < -0.1f) {
