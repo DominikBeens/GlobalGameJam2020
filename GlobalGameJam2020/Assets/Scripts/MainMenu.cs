@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] private CanvasGroup liftoffTextCanvasGroup;
     [SerializeField] private TextMeshProUGUI liftoffText;
     [SerializeField] private Transform spaceman;
+    [SerializeField] private GameObject intro;
+    [SerializeField] private GameObject menu;
 
     private Sequence spacemanSequence;
     private Sequence spaceshipSequence;
@@ -56,10 +58,12 @@ public class MainMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
 
-        ScreenFader.Instance.TogglePanel(ScreenFader.Panels.HowToPlay);
-        ScreenFader.Instance.FadeIn(1, () => {
-            SceneManager.LoadScene(GAME_SCENE_NAME);
-        }, true);
+        ScreenFader.Instance.FadeIn();
+        yield return new WaitForSeconds(1f);
+        intro.SetActive(true);
+        menu.SetActive(false);
+        ScreenFader.Instance.FadeOut(0.5f);
+
     }
 
     private void SetLiftoffText(int seconds) {
