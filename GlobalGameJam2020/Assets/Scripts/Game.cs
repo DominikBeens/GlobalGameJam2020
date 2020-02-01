@@ -11,7 +11,9 @@ public class Game : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            SceneManager.LoadScene("Menu");
+            ScreenFader.Instance.FadeIn(1, () => {
+                SceneManager.LoadScene("Menu");
+            });
         }
     }
 

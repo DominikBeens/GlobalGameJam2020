@@ -13,10 +13,22 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] private Transform spaceShip;
     [SerializeField] private CanvasGroup liftoffTextCanvasGroup;
     [SerializeField] private TextMeshProUGUI liftoffText;
+    [SerializeField] private Transform spaceman;
+
+    private Sequence spacemanSequence;
+    private Sequence spaceshipSequence;
 
     private void Awake() {
         playButton.onClick.AddListener(PlayGame);
         liftoffTextCanvasGroup.DOFade(0, 0);
+
+        spacemanSequence = DOTween.Sequence().SetEase(Ease.Linear).SetLoops(-1);
+        spacemanSequence.Append(spaceman.DOBlendableLocalMoveBy(Vector3.up * 3, 5f));
+        spacemanSequence.Append(spaceman.DOBlendableLocalMoveBy(Vector3.up * -3, 5f));
+
+        spaceshipSequence = DOTween.Sequence().SetDelay(0.5f).SetEase(Ease.Linear).SetLoops(-1);
+        spaceshipSequence.Append(spaceShip.DOBlendableLocalMoveBy(Vector3.up * 1.5f, 3f));
+        spaceshipSequence.Append(spaceShip.DOBlendableLocalMoveBy(Vector3.up * -1.5f, 3f));
     }
 
     private void OnDestroy() {
@@ -29,7 +41,8 @@ public class MainMenu : MonoBehaviour {
 
     private IEnumerator StartGameRoutine() {
         playButton.interactable = false;
-        spaceShip.DOShakePosition(20f, 0.5f, 5).SetDelay(2).SetEase(Ease.Linear);
+        spaceShip.DOShakePosition(20f, 0.3f, 3).SetDelay(2).SetEase(Ease.InSine);
+        spaceshipSequence.Kill();
 
         SetLiftoffText(3);
         yield return new WaitForSeconds(1f);
