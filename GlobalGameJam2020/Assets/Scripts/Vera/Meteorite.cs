@@ -21,7 +21,6 @@ public class Meteorite : MonoBehaviour {
     public void SetDirection(Vector3 dir,float force) {
 
         Vector3 temp = dir * 50 + MeteoritesManager.instance.Player.transform.position;
-        Instantiate(MeteoritesManager.instance.test, temp, Quaternion.identity);
         g = Vector3.MoveTowards(g,temp,force);
         speed += 0.5f;
     }

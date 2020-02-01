@@ -50,7 +50,7 @@ MonoBehaviour:
   minSpeed: 2
   maxSpeed: 4
   maxAmount: 5
-  bounds: {x: -12, y: 12, z: 7, w: -7}
+  bounds: {x: -30, y: 30, z: 20, w: -20}
   allMeteorites:
   - gObj: {fileID: 5178267159911876452, guid: 72b3b62ff92cc29428b2ea2101cb4df4, type: 3}
     smallGObj: {fileID: 5178267159911876452, guid: 4da39d5ffd24f19498f1d2d7f59e447c,
@@ -62,3 +62,4 @@ MonoBehaviour:
       type: 3}
     parts: []
     isPositiveM: 1
+  test: {fileID: 5178267159911876452, guid: b248586b0d2257e47a824f04a2ec3433, type: 3}

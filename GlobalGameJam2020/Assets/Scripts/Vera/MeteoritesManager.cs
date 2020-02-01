@@ -26,7 +26,7 @@ public class MeteoritesManager : MonoBehaviour
         }
         StartCoroutine(FirstMeteorite());
         //Camera.main.ViewportToWorldPoint()
-        //Debug.LogError(    Screen.width);
+        //Debug.LogError(Screen.width);
         Vector3 leftDown = new Vector3(0,0,20);
         Vector3 rightUp = new Vector3(1,1,20);
      
@@ -88,7 +88,7 @@ public class MeteoritesManager : MonoBehaviour
         }
 
         MeteoriteData myRandomMeteorite = allMeteorites[Random.Range(0, allMeteorites.Count)];
-        GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y,-0.4f),Quaternion.identity);
+        GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y,0.4f),Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards,new Vector2(minSpeed,maxSpeed));
     }
 
@@ -114,7 +114,7 @@ public class MeteoritesManager : MonoBehaviour
         }
 
         MeteoriteData myRandomMeteorite = allMeteorites[Random.Range(0, allMeteorites.Count)];
-        GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, -0.4f), Quaternion.identity);
+        GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
     }
 

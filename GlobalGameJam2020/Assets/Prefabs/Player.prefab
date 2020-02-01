@@ -201,6 +201,8 @@ GameObject:
   - component: {fileID: 3753909038365595951}
   - component: {fileID: 3753909038365595950}
   - component: {fileID: 3753909038365595949}
+  - component: {fileID: 76432267}
+  - component: {fileID: 76432268}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -238,7 +240,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3753909038365595948}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -297,7 +299,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 2
 --- !u!114 &3753909038365595949
 MonoBehaviour:
@@ -317,3 +319,28 @@ MonoBehaviour:
   movementTimer: 0
   test: {fileID: 0}
   testSize: 0.0585
+--- !u!114 &76432267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753909038365595948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6fdcbf8fe6bcf4798692f0eae5930c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 0}
+--- !u!114 &76432268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753909038365595948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd325e8c091ae424897d5f4f36083404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
