@@ -137,8 +137,6 @@ MonoBehaviour:
   targetIdleWobbleScale: 0.8
   targetIdleWobbleSpeed: 0.25
   idleWobbleInterval: 0.75
-  idleYMovementSpeed: 0.3
-  idleYMovementAmount: 0.3
 --- !u!54 &1591740317373124775
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1057,7 +1055,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 029231cf39b262f4b9fb2fbb32397f09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ee8e3f9e34befb4f9b46f2ad51ddf31, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
