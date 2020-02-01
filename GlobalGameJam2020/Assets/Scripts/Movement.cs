@@ -68,51 +68,47 @@ public class Movement : MonoBehaviour {
 
         if (movementTimer > 0) {
 
-            Debug.LogError(Input.GetAxis("Horizontal"));
-            Debug.LogError(Input.GetAxis("Vertical"));
+            //Debug.LogError(Input.GetAxis("Horizontal"));
+            //Debug.LogError(Input.GetAxis("Vertical"));
 
-            if (Input.GetAxis("Horizontal") > 0.3f) {
+            if (Input.GetAxis("Horizontal") > 0) {
                 myRB.AddForce(Vector3.right * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
                 if (Input.GetButtonDown("Horizontal") && boosterTimer < 0) {
-                    Debug.LogError("MoreSpeed");
                     myRB.AddForce(Vector3.right * startMovementSpeed, ForceMode.Impulse);
                     boosterTimer = boosterWaitTime;
                     hasMoved = true;
                 }
             }
 
-            if (Input.GetAxis("Horizontal") < -0.3f) {
+            if (Input.GetAxis("Horizontal") < -0) {
                 myRB.AddForce(Vector3.left * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
                 if (Input.GetButtonDown("Horizontal") && boosterTimer < 0) {
-                    Debug.LogError("MoreSpeed");
                     myRB.AddForce(Vector3.left * startMovementSpeed, ForceMode.Impulse);
                     boosterTimer = boosterWaitTime;
                     hasMoved = true;
                 }
             }
 
-            if (Input.GetAxis("Vertical") > 0.3) {
+            if (Input.GetAxis("Vertical") > 0) {
                 myRB.AddForce(Vector3.up * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
                 if (Input.GetButtonDown("Vertical") && boosterTimer < 0) {
-                    Debug.LogError("MoreSpeed");
                     myRB.AddForce(Vector3.up * startMovementSpeed, ForceMode.Impulse);
                     boosterTimer = boosterWaitTime;
                     hasMoved = true;
                 }
             }
 
-            if (Input.GetAxis("Vertical") < -0.3) {
+            if (Input.GetAxis("Vertical") < -0) {
                 myRB.AddForce(Vector3.down * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
                 if (Input.GetButtonDown("Vertical") && boosterTimer < 0) {
-                    Debug.LogError("MoreSpeed");
                     myRB.AddForce(Vector3.down * startMovementSpeed, ForceMode.Impulse);
                     boosterTimer = boosterWaitTime;
                     hasMoved = true;
