@@ -8,15 +8,21 @@ public class Meteorite : MonoBehaviour {
 
     public bool bounced;
     public int AmountSmall;
+
+    public float turnSpeed;
     public void Fill(MeteoriteData _data, Vector2 goingLoc, Vector2 _speed) {
         myData = _data;
         going = goingLoc;
         speed = Random.Range(_speed.x, _speed.y);
+        turnSpeed = Random.Range(0.1f, 0.5f);
         StartCoroutine(Move());
     }
 
     public void SetDirection(Vector3 dir,float force) {
-        g = Vector3.MoveTowards(g,dir * 10,force *Time.deltaTime);
+
+        Vector3 temp = dir * 50 + MeteoritesManager.instance.Player.transform.position;
+        Instantiate(MeteoritesManager.instance.test, temp, Quaternion.identity);
+        g = Vector3.MoveTowards(g,temp,force);
         speed += 0.5f;
     }
 
@@ -26,6 +32,7 @@ public class Meteorite : MonoBehaviour {
         Vector3 start = transform.position;
         while (transform.position != g) {
             yield return null;
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y ,turnSpeed);
             if (Vector3.Distance(transform.position, start) > 5 && !MeteoritesManager.instance.Inbounds(transform.position)) {
                 break;
             }

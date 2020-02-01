@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1274169177964368196}
   - component: {fileID: 5963888642958344444}
   - component: {fileID: 8083109254786784064}
+  - component: {fileID: 3197116385620126892}
   m_Layer: 0
-  m_Name: Meteorite good
+  m_Name: Meteorite bad 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,6 +102,7 @@ MonoBehaviour:
   speed: 0
   bounced: 0
   AmountSmall: 5
+  turnSpeed: 0
 --- !u!135 &5963888642958344444
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -130,6 +132,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 72
   m_CollisionDetection: 0
+--- !u!114 &3197116385620126892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5178267159911876452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd325e8c091ae424897d5f4f36083404, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5745403935639819872
 GameObject:
   m_ObjectHideFlags: 0
