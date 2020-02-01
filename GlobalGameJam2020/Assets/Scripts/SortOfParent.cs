@@ -14,9 +14,7 @@ public class SortOfParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 temp = transform.position;
-        Debug.Log(temp);
-        
+        Vector3 temp = transform.position;        
         child.transform.position = temp;
     }
 }

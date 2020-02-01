@@ -44,7 +44,7 @@ public class MeteoritesManager : MonoBehaviour
     private IEnumerator FirstMeteorite() {
         for (int i = 0; i < maxAmount; i++) {
             NewMeteorite();
-            yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
+            yield return new WaitForSeconds(Random.Range(.5f, 1.5f));
         }
         yield return null;
     }
@@ -112,12 +112,14 @@ public class MeteoritesManager : MonoBehaviour
         }
 
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
-
-        if (Random.Range(0, 100) < 25) {
+        int r = Random.Range(0, 100);
+        if (r < 25) {
 
             List<int> temp = h.GetNeeded();
             if(temp.Count != 0) {
+                
                 myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
+                Debug.Log(myRandomMeteorite.gObj);
             }
         } 
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);
