@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using DG.Tweening;
 
 public enum MagnetState { Push, Pull }
 
@@ -11,6 +12,7 @@ public class Magnet : MonoBehaviour {
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private MagnetRay magnetRayPrefab;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private Transform magnetRayHead;
 
     private float shootTimer;
     private MagnetState magnetState;
@@ -59,6 +61,7 @@ public class Magnet : MonoBehaviour {
         MagnetRay magnetRay = Instantiate(magnetRayPrefab, shootPoint.position, shootPoint.rotation);
         magnetRay.Initialize(magnetState);
         OnMagnetShot();
+        magnetRayHead.DOPunchPosition(magnetRayHead.InverseTransformDirection(magnetRayHead.up) * 0.05f, 0.1f);
     }
 
     private void ToggleLookAts(bool toggle) {
