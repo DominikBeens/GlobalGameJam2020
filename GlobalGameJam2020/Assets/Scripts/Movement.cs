@@ -57,7 +57,7 @@ public class Movement : MonoBehaviour {
 
     bool hasMoved;
     bool booster;
-    float boosterWaitTime = 0.5f;
+    float boosterWaitTime = 1.5f;
     float boosterTimer;
     public bool MovementUpdate() {
         hasMoved = false;
