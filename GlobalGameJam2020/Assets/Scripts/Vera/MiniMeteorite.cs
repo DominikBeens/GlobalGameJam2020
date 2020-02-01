@@ -31,6 +31,6 @@ public class MiniMeteorite : MonoBehaviour
 
     IEnumerator Delay() {
         yield return new WaitForSeconds(1);
-        GetComponent<Collider2D>().enabled = true;
+        GetComponent<Collider>().enabled = true;
     }
 }

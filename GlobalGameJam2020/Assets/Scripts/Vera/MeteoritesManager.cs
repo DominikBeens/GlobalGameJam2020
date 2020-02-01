@@ -18,12 +18,29 @@ public class MeteoritesManager : MonoBehaviour
 
     public List<MeteoriteData> allMeteorites = new List<MeteoriteData>();
 
+    public GameObject test;
 
     private void Awake() {
         if(instance == null) {
             instance = this;
         }
         StartCoroutine(FirstMeteorite());
+        //Camera.main.ViewportToWorldPoint()
+        //Debug.LogError(    Screen.width);
+        Vector3 leftDown = new Vector3(0,0,20);
+        Vector3 rightUp = new Vector3(1,1,20);
+     
+        Vector3 leftDownWorld = Camera.main.ViewportToWorldPoint(leftDown);
+        Vector3 rightDownWorld = Camera.main.ViewportToWorldPoint(rightUp);
+        bounds.x = leftDownWorld.x - 2;
+        bounds.w = leftDownWorld.y - 2;
+        bounds.z = rightDownWorld.y + 2;
+        bounds.y = rightDownWorld.x + 2;
+        Instantiate(test, new Vector3(bounds.x,0,0), Quaternion.identity);
+        Instantiate(test, new Vector3(bounds.y,0,0), Quaternion.identity);
+        Instantiate(test, new Vector3(0, bounds.z, 0), Quaternion.identity);
+        Instantiate(test, new Vector3(0, bounds.w, 0), Quaternion.identity);
+
     }
 
     private IEnumerator FirstMeteorite() {
@@ -43,6 +60,11 @@ public class MeteoritesManager : MonoBehaviour
         }
     }
 
+    private void Update() {
+        //Debug.LogError(Input.mousePosition + "mouse raw" );
+        //Debug.LogError(Camera.main.ScreenToWorldPoint(Input.mousePosition) + "mouse not raw");
+
+    }
     private void InstantiateMeteorite() {
         Vector4 playerRange = new Vector4(Player.position.x - range, Player.position.x + range, Player.position.y - range, Player.position.y + range);
         Vector2 goingTowards = new Vector2(Random.Range(playerRange.x, playerRange.y), Random.Range(playerRange.z, playerRange.w));
