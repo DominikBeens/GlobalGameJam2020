@@ -37,6 +37,10 @@ public class MagnetRay : MonoBehaviour {
         currentForce = force;
         initialized = true;
         nextWobble = Mathf.Infinity;
+        foreach (MagnetRayRay ray in GetComponentsInChildren<MagnetRayRay>(true)) {
+            ray.Initialize(magnetState);
+        }
+
         StartCoroutine(StartAnimation());
     }
 
