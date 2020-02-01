@@ -85,11 +85,11 @@ public class Meteorite : MonoBehaviour {
             Destroy(collision.gameObject);
         } else if (collision.gameObject.GetComponent<Movement>() != null) {
             if (myData.isPositiveM) {
-                print("Good Object!");
-                Health.Instance.Increment(Random.Range(0, 7));
+                Health.Instance.Increment(myData.id - 1);
+                Destroy(gameObject);
             } else {
-                print("Bad Object!");
                 Health.Instance.Decrement();
+                Explode();
             }
         }
     }

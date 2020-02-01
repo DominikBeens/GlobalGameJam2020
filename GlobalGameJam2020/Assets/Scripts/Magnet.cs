@@ -61,7 +61,7 @@ public class Magnet : MonoBehaviour {
         MagnetRay magnetRay = Instantiate(magnetRayPrefab, shootPoint.position, shootPoint.rotation);
         magnetRay.Initialize(magnetState);
         OnMagnetShot();
-        magnetRayHead.DOPunchPosition(magnetRayHead.InverseTransformDirection(magnetRayHead.up) * 0.05f, 0.1f);
+        magnetRayHead.DOPunchPosition(magnetRayHead.InverseTransformDirection(magnetRayHead.up) * 0.1f, 0.1f);
     }
 
     private void ToggleLookAts(bool toggle) {
