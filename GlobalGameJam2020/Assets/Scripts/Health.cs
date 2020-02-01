@@ -28,6 +28,10 @@ public class Health : MonoBehaviour {
         icon.SetHealthIconOn();
         killOnNextHit = false;
         UpdateText();
+
+        if (healthIcons.All(x => x.IsActive)) {
+            Game.Instance.Victory();
+        }
     }
 
     public void Decrement() {

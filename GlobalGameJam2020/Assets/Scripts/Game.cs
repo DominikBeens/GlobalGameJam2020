@@ -22,16 +22,12 @@ public class Game : MonoBehaviour {
                 SceneManager.LoadScene("Menu");
             });
         }
-
-        if (Input.GetKeyDown(KeyCode.V)) {
-            Defeat();
-        }
     }
 
     public void Victory() {
-        ScreenFader.Instance.TogglePanel(ScreenFader.Panels.Defeat);
+        ScreenFader.Instance.TogglePanel(ScreenFader.Panels.Victory);
         ScreenFader.Instance.FadeIn(1, () => {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Menu");
         }, true);
     }
 
@@ -43,13 +39,14 @@ public class Game : MonoBehaviour {
     private IEnumerator DefeatRoutine() {
         Movement movement = FindObjectOfType<Movement>();
         if (movement) {
+            movement.canMove = false;
             Vector3 player = movement.transform.position;
             for (int i = 0; i < defeatExplosions; i++) {
                 Vector2 randomInCircle = Random.insideUnitCircle;
                 float range = defeatExplosionStartRange + (i + 0.5f);
                 Vector3 position = player + new Vector3(randomInCircle.x * range, randomInCircle.y * range, player.z - 5);
                 GameObject explosion = Instantiate(MeteoritesManager.instance.explosion, position, Quaternion.Euler(0, 0, Random.value * 360));
-                explosion.transform.localScale = Vector3.one * randomInCircle.x;
+                explosion.transform.localScale = Vector3.one * (randomInCircle.x + 1);
                 float interval = Random.Range(0.8f * defeatExplosionInterval, 1.2f * defeatExplosionInterval);
                 yield return new WaitForSeconds(interval);
             }

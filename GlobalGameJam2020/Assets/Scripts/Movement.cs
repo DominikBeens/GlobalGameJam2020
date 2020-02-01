@@ -16,10 +16,12 @@ public class Movement : MonoBehaviour {
     //TestGameObject
     public GameObject test;
     public float testSize;
+    public bool canMove;
 
     void Awake() {
         myRB = GetComponent<Rigidbody>();
         main = Camera.main;
+        canMove = true;
     }
 
     void Start() {
@@ -28,6 +30,7 @@ public class Movement : MonoBehaviour {
 
     bool moving = false;
     void Update() {
+        if (!canMove) { return; }
         moving = MovementUpdate();
 
         if (moving == true && movementTimer - Time.deltaTime * 2 < 0 && movementTimer > 0) {
