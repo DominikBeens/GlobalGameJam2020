@@ -64,12 +64,6 @@ MonoBehaviour:
     type: 3}
   shootPoint: {fileID: 461841294}
   lookAt: {fileID: 269169391}
-  sparkPrefab: {fileID: 3941059450160523308, guid: a0af98b9e9228af4988a08f4dd116698,
-    type: 3}
-  minSparks: 1
-  maxSparks: 2
-  sparkForce: 75
-  sparkLifeTime: 3
 --- !u!1 &461841293
 GameObject:
   m_ObjectHideFlags: 0

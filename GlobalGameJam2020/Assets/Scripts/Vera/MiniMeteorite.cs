@@ -15,12 +15,10 @@ public class MiniMeteorite : MonoBehaviour
     }
 
     private IEnumerator Move() {
-        Debug.Log("new mini");
         Vector3 g = going;
         Vector3 start = transform.position;
         while (transform.position != g) {
             yield return null;
-            Debug.LogError(gameObject);
             if (Vector3.Distance(transform.position, start) > 5 && !MeteoritesManager.instance.Inbounds(transform.position)) {
                 break;
             }
