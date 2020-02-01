@@ -314,6 +314,5 @@ MonoBehaviour:
   movementSpeed: 10
   startMovementSpeed: 1000
   maxMovementSpeed: 2
-  playerBoundaries: {x: 5, y: 5}
+  playerBoundaries: {x: 0.9, y: 0.9, z: 0.9}
   movementTimer: 0
-  fillImage: {fileID: 0}
