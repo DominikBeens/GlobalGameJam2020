@@ -6,6 +6,7 @@ public enum MagnetState { Push, Pull }
 public class Magnet : MonoBehaviour {
 
     public static event Action<MagnetState> OnMagnetStateChanged = delegate { };
+    public static event Action OnMagnetShot = delegate { };
 
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private MagnetRay magnetRayPrefab;
@@ -53,5 +54,6 @@ public class Magnet : MonoBehaviour {
     private void Shoot() {
         MagnetRay magnetRay = Instantiate(magnetRayPrefab, shootPoint.position, shootPoint.rotation);
         magnetRay.Initialize(magnetState);
+        OnMagnetShot();
     }
 }

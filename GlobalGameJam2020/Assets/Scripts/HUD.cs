@@ -18,6 +18,7 @@ public class HUD : MonoBehaviour {
 
     private float previousCharge;
     private bool shaking;
+    private MagnetStateImage currentStateImage;
 
     [System.Serializable]
     private struct MagnetStateImage {
@@ -29,21 +30,31 @@ public class HUD : MonoBehaviour {
 
     private void Awake() {
         Magnet.OnMagnetStateChanged += OnMagnetStateChangedHandler;
+        Magnet.OnMagnetShot += OnMagnetShotHandler;
         Movement.OnChangeChanged += OnChangeChangedHandler;
     }
 
     private void OnDestroy() {
         Magnet.OnMagnetStateChanged -= OnMagnetStateChangedHandler;
+        Magnet.OnMagnetShot += OnMagnetShotHandler;
         Movement.OnChangeChanged -= OnChangeChangedHandler;
     }
 
     private void OnMagnetStateChangedHandler(MagnetState state) {
-        magnetStateImages.ForEach(x => x.GameObject.SetActive(false));
-        MagnetStateImage stateData = magnetStateImages.Find(x => x.State == state);
-        magnetStateBackground.color = stateData.BackgroundColor;
-        magnetStateFill.color = stateData.Color;
-        stateData.GameObject.SetActive(true);
-        stateData.GameObject.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
+        magnetStateImages.ForEach(x => {
+            x.GameObject.transform.DOKill(true);
+            x.GameObject.SetActive(false); 
+        });
+        currentStateImage = magnetStateImages.Find(x => x.State == state);
+        magnetStateBackground.color = currentStateImage.BackgroundColor;
+        magnetStateFill.color = currentStateImage.Color;
+        currentStateImage.GameObject.SetActive(true);
+        currentStateImage.GameObject.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
+    }
+
+    private void OnMagnetShotHandler() {
+        currentStateImage.GameObject.transform.DOKill(true);
+        currentStateImage.GameObject.transform.DOPunchScale(Vector3.one * 0.2f, 0.1f);
     }
 
     private void OnChangeChangedHandler(float charge) {
