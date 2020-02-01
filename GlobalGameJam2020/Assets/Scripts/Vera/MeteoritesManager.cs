@@ -113,7 +113,7 @@ public class MeteoritesManager : MonoBehaviour
 
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
 
-        if (Random.Range(0, 100) < 100) {
+        if (Random.Range(0, 100) < 25) {
 
             List<int> temp = h.GetNeeded();
             if(temp.Count != 0) {
