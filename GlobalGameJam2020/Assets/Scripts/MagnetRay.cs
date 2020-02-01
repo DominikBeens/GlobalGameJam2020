@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
-using System.Collections;
+using UnityEngine;
 
 public class MagnetRay : MonoBehaviour {
 
@@ -20,6 +20,7 @@ public class MagnetRay : MonoBehaviour {
     [SerializeField] private float targetIdleWobbleScale = 0.8f;
     [SerializeField] private float targetIdleWobbleSpeed = 0.15f;
     [SerializeField] private float idleWobbleInterval = 0.5f;
+    [SerializeField] AudioSource myAudioSource;
 
     private new Rigidbody rigidbody;
     private new Collider collider;
@@ -32,6 +33,11 @@ public class MagnetRay : MonoBehaviour {
 
     public void Initialize(MagnetState magnetState) {
         this.magnetState = magnetState;
+        if (magnetState == MagnetState.Pull) {
+            myAudioSource.pitch = 1f;
+        } else {
+            myAudioSource.pitch = 0.6f;
+        }
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         collider.enabled = false;
@@ -60,7 +66,7 @@ public class MagnetRay : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Meteorite meteorite = other.GetComponent<Meteorite>();
-        if (meteorite) { 
+        if (meteorite) {
             Vector3 direction = magnetState == MagnetState.Push ? transform.up : -transform.up;
             meteorite.SetDirection(direction, pushPullForce);
         }
@@ -80,7 +86,7 @@ public class MagnetRay : MonoBehaviour {
         for (int i = 0; i < rayObjects.Count; i++) {
             Transform ray = rayObjects[i];
             float delay = startDelay * i;
-            ray.DOScaleX(scaleInTargetScale, scaleInDuration).SetDelay(delay).SetEase(Ease.OutBack).OnStart(() => { 
+            ray.DOScaleX(scaleInTargetScale, scaleInDuration).SetDelay(delay).SetEase(Ease.OutBack).OnStart(() => {
                 ray.gameObject.SetActive(true);
             }).OnComplete(() => {
                 ray.DOScaleX(targetIdleScale, scaleOutDuration);
