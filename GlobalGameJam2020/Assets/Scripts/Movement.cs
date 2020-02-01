@@ -68,9 +68,6 @@ public class Movement : MonoBehaviour {
 
         if (movementTimer > 0) {
 
-            //Debug.LogError(Input.GetAxis("Horizontal"));
-            //Debug.LogError(Input.GetAxis("Vertical"));
-
             if (Input.GetAxis("Horizontal") > 0) {
                 myRB.AddForce(Vector3.right * movementSpeed);
                 movementTimer -= Time.deltaTime;
