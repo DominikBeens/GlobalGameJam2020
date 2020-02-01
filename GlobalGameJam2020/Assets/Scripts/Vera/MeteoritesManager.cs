@@ -28,9 +28,6 @@ public class MeteoritesManager : MonoBehaviour
         if(instance == null) {
             instance = this;
         }
-
-        //Camera.main.ViewportToWorldPoint()
-        //Debug.LogError(Screen.width);
         Vector3 leftDown = new Vector3(0,0,20);
         Vector3 rightUp = new Vector3(1,1,20);
      
@@ -64,11 +61,6 @@ public class MeteoritesManager : MonoBehaviour
         }
     }
 
-    private void Update() {
-        //Debug.LogError(Input.mousePosition + "mouse raw" );
-        //Debug.LogError(Camera.main.ScreenToWorldPoint(Input.mousePosition) + "mouse not raw");
-
-    }
     private void InstantiateMeteorite() {
         Vector4 playerRange = new Vector4(Player.position.x - range, Player.position.x + range, Player.position.y - range, Player.position.y + range);
         Vector2 goingTowards = new Vector2(Random.Range(playerRange.x, playerRange.y), Random.Range(playerRange.z, playerRange.w));
@@ -135,7 +127,6 @@ public class MeteoritesManager : MonoBehaviour
             if(temp.Count != 0) {
                 
                 myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
-                Debug.Log(myRandomMeteorite.gObj);
             }
         } 
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);

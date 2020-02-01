@@ -67,7 +67,7 @@ public class Health : MonoBehaviour {
         List<int> toBe = new List<int>();
         for (int i = 0; i < healthIcons.Length; i++) {
             if (!healthIcons[i].IsActive) {
-                toBe.Add(i);
+                toBe.Add(healthIcons[i].SpriteId);
             }
         }
         return toBe;
