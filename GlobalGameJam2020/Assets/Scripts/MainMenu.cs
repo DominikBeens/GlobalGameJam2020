@@ -56,9 +56,10 @@ public class MainMenu : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
 
+        ScreenFader.Instance.TogglePanel(ScreenFader.Panels.HowToPlay);
         ScreenFader.Instance.FadeIn(1, () => {
             SceneManager.LoadScene(GAME_SCENE_NAME);
-        });
+        }, true);
     }
 
     private void SetLiftoffText(int seconds) {

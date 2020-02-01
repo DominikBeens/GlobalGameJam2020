@@ -32,7 +32,7 @@ public class Health : MonoBehaviour {
 
     public void Decrement() {
         if (killOnNextHit) {
-            Game.Instance.GameOver();
+            Game.Instance.Defeat();
             return;
         }
 
