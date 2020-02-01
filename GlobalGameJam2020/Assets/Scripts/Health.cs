@@ -59,7 +59,7 @@ public class Health : MonoBehaviour {
                 active++;
             }
         }
-        string suffix = killOnNextHit ? "!" : string.Empty;
+        string suffix = killOnNextHit ? "<color=yellow>!</color>" : string.Empty;
         counterText.text = $"{active}/{healthIcons.Length}{suffix}";
         counterText.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
     }

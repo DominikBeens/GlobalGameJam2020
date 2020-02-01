@@ -18,7 +18,7 @@ public class BackgroundObjectSpawner : MonoBehaviour {
 
     [SerializeField] private List<BackgroundObject> backgroundObjects = new List<BackgroundObject>();
 
-    private List<GameObject> spawnedObjects = new List<GameObject>();
+    private List<Tuple<BackgroundObject, Vector3>> spawnedObjects = new List<Tuple<BackgroundObject, Vector3>>();
     private Camera mainCam;
 
     private void Awake() {
@@ -33,7 +33,7 @@ public class BackgroundObjectSpawner : MonoBehaviour {
                 int tries = 25;
                 while (!foundValidPosition && tries > 0) {
                     Vector3 position = GetRandomPosition(obj);
-                    if (IsValidPosition(position, obj.ClearRange)) {
+                    if (IsValidPosition(position)) {
                         foundValidPosition = true;
                         SpawnObject(obj, position);
                     }
@@ -51,11 +51,15 @@ public class BackgroundObjectSpawner : MonoBehaviour {
         return worldPosition;
     }
 
-    private bool IsValidPosition(Vector3 position, float allowedRange) {
+    private bool IsValidPosition(Vector3 position) {
         if (spawnedObjects.Count == 0) { return true; }
-        foreach (GameObject spawnedObject in spawnedObjects) {
-            float distance = (spawnedObject.transform.position - position).sqrMagnitude;
-            if (distance < (allowedRange * allowedRange)) {
+        foreach (Tuple<BackgroundObject, Vector3> spawnedObject in spawnedObjects) {
+            Vector3 a = spawnedObject.Item2;
+            a.z = 0;
+            Vector3 b = position;
+            b.z = 0;
+            float distance = (a - b).sqrMagnitude;
+            if (distance < (spawnedObject.Item1.ClearRange * spawnedObject.Item1.ClearRange)) {
                 return false;
             }
         }
@@ -65,6 +69,6 @@ public class BackgroundObjectSpawner : MonoBehaviour {
     private void SpawnObject(BackgroundObject obj, Vector3 position) {
         GameObject newObject = Instantiate(obj.Prefab, position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         newObject.transform.SetParent(transform);
-        spawnedObjects.Add(newObject);
+        spawnedObjects.Add(new Tuple<BackgroundObject, Vector3>(obj, position));
     }
 }

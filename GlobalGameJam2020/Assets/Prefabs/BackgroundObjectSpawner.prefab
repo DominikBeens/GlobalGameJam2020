@@ -44,6 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundObjects:
+  - Prefab: {fileID: 5855075932310266687, guid: f016667902c258043af3db310fd994be,
+      type: 3}
+    MinScale: 1
+    MaxScale: 1
+    MinZPosition: 10
+    MaxZPosition: 5
+    SpawnAmount: 1
+    ClearRange: 13
   - Prefab: {fileID: 431323177483821932, guid: 2aa269688fde6a64d8a1162fb4cfaea4, type: 3}
     MinScale: 1
     MaxScale: 2
