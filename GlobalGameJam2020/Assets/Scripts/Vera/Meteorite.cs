@@ -14,13 +14,14 @@ public class Meteorite : MonoBehaviour {
         myData = _data;
         going = goingLoc;
         speed = Random.Range(_speed.x, _speed.y);
-        turnSpeed = Random.Range(0.1f, 0.5f);
+        turnSpeed = Random.Range(5.0f, 20.0f) / 100; ;
+        Debug.Log(turnSpeed);
         StartCoroutine(Move());
     }
 
     public void SetDirection(Vector3 dir,float force) {
 
-        Vector3 temp = dir * 50 + MeteoritesManager.instance.Player.transform.position;
+        Vector3 temp = dir * 100 + MeteoritesManager.instance.Player.transform.position;
         g = Vector3.MoveTowards(g,temp,force);
         speed += 0.5f;
     }
@@ -31,7 +32,7 @@ public class Meteorite : MonoBehaviour {
         Vector3 start = transform.position;
         while (transform.position != g) {
             yield return null;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y ,turnSpeed);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y ,(transform.eulerAngles.z + turnSpeed));
             if (Vector3.Distance(transform.position, start) > 5 && !MeteoritesManager.instance.Inbounds(transform.position)) {
                 break;
             }
@@ -86,6 +87,7 @@ public class Meteorite : MonoBehaviour {
         } else if (collision.gameObject.GetComponent<Movement>() != null) {
             if (myData.isPositiveM) {
                 Health.Instance.Increment(myData.id - 1);
+                MeteoritesManager.instance.NewMeteorite();
                 Destroy(gameObject);
             } else {
                 Health.Instance.Decrement();
