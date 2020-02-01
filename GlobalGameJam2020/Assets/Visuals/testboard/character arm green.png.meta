@@ -104,7 +104,7 @@ TextureImporter:
       name: character arm green_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 12
         y: 925
         width: 916
         height: 1025
@@ -124,7 +124,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: aa34687bdd9c65443bfd278aaf2f9e0e
+    spriteID: afdf0265b789b5c48805c5794fe34d5e
     internalID: 0
     vertices: []
     indices: 
