@@ -14,6 +14,7 @@ public class MagnetRay : MonoBehaviour {
     [SerializeField] private float startDelay = 0.1f;
     [SerializeField] private float scaleInDuration = 0.3f;
     [SerializeField] private float scaleOutDuration = 5f;
+    [SerializeField] private float scaleInTargetScale = 1.5f;
     [SerializeField] private float targetIdleScale = 0.6f;
     [SerializeField] private float idleStartDelay = 0.1f;
     [SerializeField] private float targetIdleWobbleScale = 0.8f;
@@ -53,9 +54,10 @@ public class MagnetRay : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Meteorite meteorite = other.GetComponent<Meteorite>();
-        if (!meteorite) { return; }
-        Vector3 direction = magnetState == MagnetState.Push ? transform.up : -transform.up;
-        meteorite.SetDirection(direction, pushPullForce);
+        if (meteorite) { 
+            Vector3 direction = magnetState == MagnetState.Push ? transform.up : -transform.up;
+            meteorite.SetDirection(direction, pushPullForce);
+        }
         DestroyRay();
     }
 
@@ -72,7 +74,7 @@ public class MagnetRay : MonoBehaviour {
         for (int i = 0; i < rayObjects.Count; i++) {
             Transform ray = rayObjects[i];
             float delay = startDelay * i;
-            ray.DOScaleX(1f, scaleInDuration).SetDelay(delay).SetEase(Ease.OutBack).OnStart(() => { 
+            ray.DOScaleX(scaleInTargetScale, scaleInDuration).SetDelay(delay).SetEase(Ease.OutBack).OnStart(() => { 
                 ray.gameObject.SetActive(true);
             }).OnComplete(() => {
                 ray.DOScaleX(targetIdleScale, scaleOutDuration);
