@@ -9,7 +9,13 @@ public class Game : MonoBehaviour {
         Instance = this;
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Menu");
+        }
+    }
+
     public void GameOver() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Game");
     }
 }
