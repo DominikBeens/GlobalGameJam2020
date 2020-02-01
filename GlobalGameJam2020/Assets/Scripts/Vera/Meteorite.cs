@@ -16,7 +16,8 @@ public class Meteorite : MonoBehaviour {
     }
 
     public void SetDirection(Vector3 dir,float force) {
-        g = Vector3.MoveTowards(g,dir,force * Time.deltaTime);
+        g = Vector3.MoveTowards(g,dir * 10,force);
+        speed += 0.5f;
     }
 
     Vector3 g;
