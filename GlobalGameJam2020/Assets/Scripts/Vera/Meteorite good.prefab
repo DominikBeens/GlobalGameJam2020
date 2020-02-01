@@ -142,7 +142,6 @@ GameObject:
   - component: {fileID: 8102193027484409753}
   - component: {fileID: 6839318794026302612}
   - component: {fileID: 89141849990923171}
-  - component: {fileID: 4652436088557478627}
   m_Layer: 0
   m_Name: Cardboard
   m_TagString: Untagged
@@ -1266,17 +1265,3 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 7200000041000000
---- !u!64 &4652436088557478627
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5745403935639819872}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
