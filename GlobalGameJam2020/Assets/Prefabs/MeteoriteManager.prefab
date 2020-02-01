@@ -51,15 +51,47 @@ MonoBehaviour:
   maxSpeed: 4
   maxAmount: 5
   bounds: {x: -30, y: 30, z: 20, w: -20}
-  allMeteorites:
+  h: {fileID: 0}
+  badMeteorites:
+  - gObj: {fileID: 5178267159911876452, guid: fe07f9a4551e3ed41a106247daf96a3c, type: 3}
+    smallGObj: {fileID: 5178267159911876452, guid: 4da39d5ffd24f19498f1d2d7f59e447c,
+      type: 3}
+    isPositiveM: 0
+    id: 0
   - gObj: {fileID: 5178267159911876452, guid: 72b3b62ff92cc29428b2ea2101cb4df4, type: 3}
     smallGObj: {fileID: 5178267159911876452, guid: 4da39d5ffd24f19498f1d2d7f59e447c,
       type: 3}
-    parts: []
     isPositiveM: 0
-  - gObj: {fileID: 5178267159911876452, guid: 08139e3e6f5309b44b01224bc1abb81a, type: 3}
-    smallGObj: {fileID: 5178267159911876452, guid: 4da39d5ffd24f19498f1d2d7f59e447c,
-      type: 3}
-    parts: []
+    id: 1
+  goodMeteorites:
+  - gObj: {fileID: 5178267159911876452, guid: 6e5da8bf20cee78479656f73caff91ad, type: 3}
+    smallGObj: {fileID: 0}
     isPositiveM: 1
+    id: 0
+  - gObj: {fileID: 5178267159911876452, guid: 460d263c60c9eb14eb50f39fb7dc1d6b, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 1
+    id: 2
+  - gObj: {fileID: 5178267159911876452, guid: 8949e99655ee2ee41aac481a5a9e8965, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 1
+    id: 3
+  - gObj: {fileID: 5178267159911876452, guid: f2c2eb710fba1b549a67b9b0b7fd4dcf, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 1
+    id: 4
+  - gObj: {fileID: 5178267159911876452, guid: 3ff434e68ace9964da7cf583ededee52, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 1
+    id: 5
+  - gObj: {fileID: 5178267159911876452, guid: 30607471c5846ab48a090ab8b8170142, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 1
+    id: 6
+  - gObj: {fileID: 5178267159911876452, guid: 2172b76386d90a948a32feee1777e07d, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 1
+    id: 7
   test: {fileID: 5178267159911876452, guid: b248586b0d2257e47a824f04a2ec3433, type: 3}
+  explosion: {fileID: 8371179729202189954, guid: 9f7903929ed99a24fbfdf1e1b2718dfa,
+    type: 3}

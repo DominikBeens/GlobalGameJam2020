@@ -15,10 +15,13 @@ public class MeteoritesManager : MonoBehaviour
 
     public Vector4 bounds;
 
-
-    public List<MeteoriteData> allMeteorites = new List<MeteoriteData>();
+    public Health h;
+    public List<MeteoriteData> badMeteorites = new List<MeteoriteData>();
+    public List<MeteoriteData> goodMeteorites = new List<MeteoriteData>();
 
     public GameObject test;
+
+    public GameObject explosion;
 
     private void Awake() {
         if(instance == null) {
@@ -36,11 +39,6 @@ public class MeteoritesManager : MonoBehaviour
         bounds.w = leftDownWorld.y - 2;
         bounds.z = rightDownWorld.y + 2;
         bounds.y = rightDownWorld.x + 2;
-        Instantiate(test, new Vector3(bounds.x,0,0), Quaternion.identity);
-        Instantiate(test, new Vector3(bounds.y,0,0), Quaternion.identity);
-        Instantiate(test, new Vector3(0, bounds.z, 0), Quaternion.identity);
-        Instantiate(test, new Vector3(0, bounds.w, 0), Quaternion.identity);
-
     }
 
     private IEnumerator FirstMeteorite() {
@@ -87,7 +85,7 @@ public class MeteoritesManager : MonoBehaviour
             }
         }
 
-        MeteoriteData myRandomMeteorite = allMeteorites[Random.Range(0, allMeteorites.Count)];
+        MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y,0.4f),Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards,new Vector2(minSpeed,maxSpeed));
     }
@@ -113,7 +111,15 @@ public class MeteoritesManager : MonoBehaviour
             }
         }
 
-        MeteoriteData myRandomMeteorite = allMeteorites[Random.Range(0, allMeteorites.Count)];
+        MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
+
+        if (Random.Range(0, 100) < 100) {
+
+            List<int> temp = h.GetNeeded();
+            if(temp.Count != 0) {
+                myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
+            }
+        } 
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
     }
@@ -122,7 +128,6 @@ public class MeteoritesManager : MonoBehaviour
         if (loc.x < bounds.y && loc.x > bounds.x && loc.y < bounds.z && loc.y > bounds.w) {
             return true;
         } else {
-            Debug.LogError("outofbounds");
             return false;
 
         }
@@ -133,6 +138,6 @@ public class MeteoritesManager : MonoBehaviour
 public class MeteoriteData {
     public GameObject gObj;
     public GameObject smallGObj;
-    public List<GameObject> parts = new List<GameObject>();
     public bool isPositiveM;
+    public int id;
 }
