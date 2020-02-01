@@ -6,6 +6,12 @@ public class MiniMeteorite : MonoBehaviour
 {
     private Vector3 going;
     private float speed;
+    private new Rigidbody rigidbody;
+
+    private void Awake() {
+        rigidbody = GetComponent<Rigidbody>();
+    }
+
     public void Fill(Vector2 goingLoc, float _speed) {
         going = goingLoc;
         Debug.Log(going);
@@ -31,5 +37,13 @@ public class MiniMeteorite : MonoBehaviour
     IEnumerator Delay() {
         yield return new WaitForSeconds(1);
         GetComponent<Collider>().enabled = true;
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        Movement movement = collision.transform.GetComponent<Movement>();
+        if (movement != null) {
+            movement.SetVelocity(rigidbody.velocity * 2);
+            Destroy(gameObject);
+        }
     }
 }

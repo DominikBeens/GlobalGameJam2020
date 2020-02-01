@@ -34,6 +34,7 @@ public class MagnetRay : MonoBehaviour {
         this.magnetState = magnetState;
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+        collider.enabled = false;
         currentForce = force;
         initialized = true;
         nextWobble = Mathf.Infinity;
@@ -41,6 +42,7 @@ public class MagnetRay : MonoBehaviour {
             ray.Initialize(magnetState);
         }
 
+        StartCoroutine(EnableCollider());
         StartCoroutine(StartAnimation());
     }
 
@@ -130,5 +132,10 @@ public class MagnetRay : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
+    }
+
+    private IEnumerator EnableCollider() {
+        yield return new WaitForSeconds(1f);
+        collider.enabled = true;
     }
 }

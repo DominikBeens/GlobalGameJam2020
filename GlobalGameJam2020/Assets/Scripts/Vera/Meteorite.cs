@@ -88,6 +88,7 @@ public class Meteorite : MonoBehaviour {
                 print("Good Object!");
             } else {
                 print("Bad Object!");
+                Health.Instance.Decrement();
             }
         }
     }

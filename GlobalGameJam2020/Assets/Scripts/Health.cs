@@ -8,24 +8,19 @@ public class Health : MonoBehaviour {
 
     [SerializeField] private TextMeshProUGUI counterText;
 
+    public static Health Instance { get; private set; }
+
     private HealthIcon[] healthIcons;
     private bool killOnNextHit;
 
     private void Awake() {
+        Instance = this;
         healthIcons = GetComponentsInChildren<HealthIcon>();
         foreach (HealthIcon icon in healthIcons) {
             icon.SetHealthIconOff();
         }
+        killOnNextHit = true;
         UpdateText();
-    }
-
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.C)) {
-            Increment(Random.Range(0, healthIcons.Length));
-        }
-        if (Input.GetKeyDown(KeyCode.V)) {
-            Decrement();
-        }
     }
 
     public void Increment(int spriteId) {

@@ -118,4 +118,8 @@ public class Movement : MonoBehaviour {
         }
         return hasMoved;
     }
+
+    public void SetVelocity(Vector3 direction) {
+        myRB.velocity = new Vector3(direction.x, direction.y, myRB.velocity.z);
+    }
 }
