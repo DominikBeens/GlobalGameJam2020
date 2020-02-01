@@ -13,6 +13,8 @@ public class Magnet : MonoBehaviour {
     [SerializeField] private MagnetRay magnetRayPrefab;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform magnetRayHead;
+    [SerializeField] private GameObject pushArm;
+    [SerializeField] private GameObject pullArm;
 
     private float shootTimer;
     private MagnetState magnetState;
@@ -20,6 +22,7 @@ public class Magnet : MonoBehaviour {
 
     private void Awake() {
         lookAts = GetComponentsInChildren<LookAtMouse>();
+        ToggleArmImage();
     }
 
     private void Start() {
@@ -38,6 +41,7 @@ public class Magnet : MonoBehaviour {
             } else {
                 magnetState = MagnetState.Pull;
             }
+            ToggleArmImage();
             OnMagnetStateChanged(magnetState);
         }
     }
@@ -68,5 +72,10 @@ public class Magnet : MonoBehaviour {
         foreach (LookAtMouse lookAt in lookAts) {
             lookAt.SetLookAt(toggle);
         }
+    }
+
+    private void ToggleArmImage() {
+        pushArm.SetActive(magnetState == MagnetState.Push);
+        pullArm.SetActive(magnetState == MagnetState.Pull);
     }
 }

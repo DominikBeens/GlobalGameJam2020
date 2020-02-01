@@ -41,6 +41,10 @@ public class Game : MonoBehaviour {
         if (movement) {
             movement.canMove = false;
             Vector3 player = movement.transform.position;
+            GameObject firstExplosion = Instantiate(MeteoritesManager.instance.explosion, player, Quaternion.Euler(0, 0, Random.value * 360));
+            firstExplosion.transform.localScale = Vector3.one * 3f;
+            movement.gameObject.SetActive(false);
+            movement.GetComponent<SortOfParent>().child.gameObject.SetActive(false);
             for (int i = 0; i < defeatExplosions; i++) {
                 Vector2 randomInCircle = Random.insideUnitCircle;
                 float range = defeatExplosionStartRange + (i + 0.5f);
