@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
     public static event Action<float> OnChangeChanged = delegate {};
@@ -10,15 +9,14 @@ public class Movement : MonoBehaviour {
     [SerializeField] private float movementSpeed;
     [SerializeField] private float startMovementSpeed = 1000;
     [SerializeField] private float maxMovementSpeed;
-    [SerializeField] private Vector2 playerBoundaries;
+    [SerializeField] private Vector3 playerBoundaries = new Vector3(0.9f, 0.9f, 0.9f);
     public float movementTimer;
     private Rigidbody myRB;
-
-    //Test
-    public Image fillImage;
+    private Camera main;
 
     void Awake() {
         myRB = GetComponent<Rigidbody>();
+        main = Camera.main;
     }
 
     bool moving = false;
@@ -33,7 +31,10 @@ public class Movement : MonoBehaviour {
             movementTimer += Time.deltaTime * 2;
         }
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -playerBoundaries.x, playerBoundaries.x), Mathf.Clamp(transform.position.y, -playerBoundaries.y, playerBoundaries.y), 0);
+        Vector3 screenPosition = main.ViewportToWorldPoint(playerBoundaries);
+        Debug.LogError(main.ViewportToWorldPoint(playerBoundaries));
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -screenPosition.x, screenPosition.x), Mathf.Clamp(transform.position.y, -screenPosition.y, screenPosition.y), 0);
 
         if (transform.position.x == -playerBoundaries.x || transform.position.x == playerBoundaries.x) {
             myRB.velocity = new Vector3(0, myRB.velocity.y, myRB.velocity.z);
