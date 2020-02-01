@@ -86,6 +86,7 @@ public class Meteorite : MonoBehaviour {
         } else if (collision.gameObject.GetComponent<Movement>() != null) {
             if (myData.isPositiveM) {
                 print("Good Object!");
+                Health.Instance.Increment(Random.Range(0, 7));
             } else {
                 print("Bad Object!");
                 Health.Instance.Decrement();

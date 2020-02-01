@@ -127,7 +127,9 @@ public class MagnetRay : MonoBehaviour {
 
         for (int i = rayObjects.Count - 1; i >= 0; i--) {
             Transform ray = rayObjects[i];
-            ray.DOScaleX(0, 0.1f).SetDelay(0.05f * i);
+            ray.DOScaleX(0, 0.1f).SetDelay(0.05f * i).OnComplete(() => {
+                ray.gameObject.SetActive(false);
+            });
         }
 
         yield return new WaitForSeconds(0.5f);
@@ -135,7 +137,7 @@ public class MagnetRay : MonoBehaviour {
     }
 
     private IEnumerator EnableCollider() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         collider.enabled = true;
     }
 }

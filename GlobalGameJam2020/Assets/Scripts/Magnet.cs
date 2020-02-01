@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public enum MagnetState { Push, Pull }
 
@@ -12,10 +11,14 @@ public class Magnet : MonoBehaviour {
     [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private MagnetRay magnetRayPrefab;
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private LookAtMouse lookAt;
 
     private float shootTimer;
     private MagnetState magnetState;
+    private LookAtMouse[] lookAts;
+
+    private void Awake() {
+        lookAts = GetComponentsInChildren<LookAtMouse>();
+    }
 
     private void Start() {
         OnMagnetStateChanged(magnetState);
@@ -44,11 +47,11 @@ public class Magnet : MonoBehaviour {
         }
 
         if (Input.GetMouseButton(0)) {
-            lookAt.SetLookAt(false);
+            ToggleLookAts(false);
             shootTimer = shootCooldown;
             Shoot();
         } else {
-            lookAt.SetLookAt(true);
+            ToggleLookAts(true);
         }
     }
 
@@ -56,5 +59,11 @@ public class Magnet : MonoBehaviour {
         MagnetRay magnetRay = Instantiate(magnetRayPrefab, shootPoint.position, shootPoint.rotation);
         magnetRay.Initialize(magnetState);
         OnMagnetShot();
+    }
+
+    private void ToggleLookAts(bool toggle) {
+        foreach (LookAtMouse lookAt in lookAts) {
+            lookAt.SetLookAt(toggle);
+        }
     }
 }
