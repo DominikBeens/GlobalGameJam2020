@@ -312,7 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  startMovementSpeed: 1000
-  maxMovementSpeed: 2
-  playerBoundaries: {x: 0.9, y: 0.9, z: 0.9}
+  startMovementSpeed: 50
+  maxMovementSpeed: 3
   movementTimer: 0
+  test: {fileID: 0}
+  testSize: 0.0585

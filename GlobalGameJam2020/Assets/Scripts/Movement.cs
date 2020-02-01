@@ -9,14 +9,21 @@ public class Movement : MonoBehaviour {
     [SerializeField] private float movementSpeed;
     [SerializeField] private float startMovementSpeed = 1000;
     [SerializeField] private float maxMovementSpeed;
-    [SerializeField] private Vector3 playerBoundaries = new Vector3(0.9f, 0.9f, 0.9f);
     public float movementTimer;
     private Rigidbody myRB;
     private Camera main;
 
+    //TestGameObject
+    public GameObject test;
+    public float testSize;
+
     void Awake() {
         myRB = GetComponent<Rigidbody>();
         main = Camera.main;
+    }
+
+    void Start() {
+        movementTimer = maxMovementSpeed;
     }
 
     bool moving = false;
@@ -31,59 +38,85 @@ public class Movement : MonoBehaviour {
             movementTimer += Time.deltaTime * 2;
         }
 
-        Vector3 screenPosition = main.ViewportToWorldPoint(playerBoundaries);
-        Debug.LogError(main.ViewportToWorldPoint(playerBoundaries));
+        Vector3 screenPoint = main.WorldToViewportPoint(transform.position);
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -screenPosition.x, screenPosition.x), Mathf.Clamp(transform.position.y, -screenPosition.y, screenPosition.y), 0);
-
-        if (transform.position.x == -playerBoundaries.x || transform.position.x == playerBoundaries.x) {
-            myRB.velocity = new Vector3(0, myRB.velocity.y, myRB.velocity.z);
+        if (screenPoint.x < 0.01f) {
+            myRB.velocity = new Vector3(1, myRB.velocity.y, myRB.velocity.z);
+        } else if (screenPoint.x > 0.99f) {
+            myRB.velocity = new Vector3(-1, myRB.velocity.y, myRB.velocity.z);
         }
-        if (transform.position.y == -playerBoundaries.y || transform.position.y == playerBoundaries.y) {
-            myRB.velocity = new Vector3(myRB.velocity.x, 0, myRB.velocity.z);
+
+        if (screenPoint.y < 0.01f) {
+            myRB.velocity = new Vector3(myRB.velocity.x, 1, myRB.velocity.z);
+        } else if (screenPoint.y > 0.99f) {
+            myRB.velocity = new Vector3(myRB.velocity.x, -1, myRB.velocity.z);
         }
 
         OnChangeChanged(movementTimer / maxMovementSpeed);
     }
 
     bool hasMoved;
+    bool booster;
+    float boosterWaitTime = 0.5f;
+    float boosterTimer;
     public bool MovementUpdate() {
         hasMoved = false;
+
+        if (boosterTimer >= 0) {
+            boosterTimer -= Time.deltaTime;
+        }
+
         if (movementTimer > 0) {
-            if (Input.GetAxis("Horizontal") > 0.05f) {
+
+            Debug.LogError(Input.GetAxis("Horizontal"));
+            Debug.LogError(Input.GetAxis("Vertical"));
+
+            if (Input.GetAxis("Horizontal") > 0.3f) {
                 myRB.AddForce(Vector3.right * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
-            } else if (Input.GetButtonDown("Horizontal") && Input.GetAxis("Horizontal") > 0) {
-                myRB.AddForce(Vector3.right * startMovementSpeed);
-                hasMoved = true;
+                if (Input.GetButtonDown("Horizontal") && boosterTimer < 0) {
+                    Debug.LogError("MoreSpeed");
+                    myRB.AddForce(Vector3.right * startMovementSpeed, ForceMode.Impulse);
+                    boosterTimer = boosterWaitTime;
+                    hasMoved = true;
+                }
             }
 
-            if (Input.GetAxis("Horizontal") < -0.05f) {
+            if (Input.GetAxis("Horizontal") < -0.3f) {
                 myRB.AddForce(Vector3.left * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
-            } else if (Input.GetButtonDown("Horizontal") && Input.GetAxis("Horizontal") < 0) {
-                myRB.AddForce(Vector3.left * startMovementSpeed);
-                hasMoved = true;
+                if (Input.GetButtonDown("Horizontal") && boosterTimer < 0) {
+                    Debug.LogError("MoreSpeed");
+                    myRB.AddForce(Vector3.left * startMovementSpeed, ForceMode.Impulse);
+                    boosterTimer = boosterWaitTime;
+                    hasMoved = true;
+                }
             }
 
-            if (Input.GetAxis("Vertical") > 0.05f) {
+            if (Input.GetAxis("Vertical") > 0.3) {
                 myRB.AddForce(Vector3.up * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
-            } else if (Input.GetButtonDown("Vertical") && Input.GetAxis("Vertical") > 0) {
-                myRB.AddForce(Vector3.up * startMovementSpeed);
-                hasMoved = true;
+                if (Input.GetButtonDown("Vertical") && boosterTimer < 0) {
+                    Debug.LogError("MoreSpeed");
+                    myRB.AddForce(Vector3.up * startMovementSpeed, ForceMode.Impulse);
+                    boosterTimer = boosterWaitTime;
+                    hasMoved = true;
+                }
             }
 
-            if (Input.GetAxis("Vertical") < -0.05f) {
+            if (Input.GetAxis("Vertical") < -0.3) {
                 myRB.AddForce(Vector3.down * movementSpeed);
                 movementTimer -= Time.deltaTime;
                 hasMoved = true;
-            } else if (Input.GetButtonDown("Vertical") && Input.GetAxis("Vertical") < 0) {
-                myRB.AddForce(Vector3.down * startMovementSpeed);
-                hasMoved = true;
+                if (Input.GetButtonDown("Vertical") && boosterTimer < 0) {
+                    Debug.LogError("MoreSpeed");
+                    myRB.AddForce(Vector3.down * startMovementSpeed, ForceMode.Impulse);
+                    boosterTimer = boosterWaitTime;
+                    hasMoved = true;
+                }
             }
 
         }
