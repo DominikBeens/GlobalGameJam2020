@@ -94,12 +94,9 @@ public class MeteoritesManager : MonoBehaviour
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         int r = Random.Range(0, 100);
         if (r < 25) {
-
             List<int> temp = h.GetNeeded();
             if (temp.Count != 0) {
-
                 myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
-                Debug.Log(myRandomMeteorite.gObj);
             }
         }
         if(Random.Range(0,1000) < 2) {

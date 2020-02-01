@@ -49,7 +49,6 @@ public class Meteorite : MonoBehaviour {
 
                 Vector3 dirA = g - transform.position;
                 Vector3 dirB = other.g - other.transform.position;
-                Debug.Log(Vector3.Distance(dirA, dirB));
                 bool sameDir = false;
                 if (Vector3.Distance(dirA, dirB) < 20) {
                     sameDir = true;
