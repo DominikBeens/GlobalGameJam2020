@@ -16,7 +16,7 @@ public class Meteorite : MonoBehaviour {
     }
 
     public void SetDirection(Vector3 dir,float force) {
-        g = Vector3.MoveTowards(g,dir * 10,force);
+        g = Vector3.MoveTowards(g,dir * 10,force *Time.deltaTime);
         speed += 0.5f;
     }
 
@@ -35,7 +35,6 @@ public class Meteorite : MonoBehaviour {
         Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision) {
-        Debug.LogError("Collision");
         if (collision.gameObject.GetComponent<Meteorite>() != null) {
             if (bounced == false) {
                 bounced = true;
@@ -76,7 +75,6 @@ public class Meteorite : MonoBehaviour {
                 Bounce(toMuchSpeed);
             }
         } else if (collision.gameObject.GetComponent<MiniMeteorite>() != null) {
-            Debug.LogError("DESTROYED!");
             bounced = true;
             Destroy(collision.gameObject);
         } else if (collision.gameObject.GetComponent<Movement>() != null) {

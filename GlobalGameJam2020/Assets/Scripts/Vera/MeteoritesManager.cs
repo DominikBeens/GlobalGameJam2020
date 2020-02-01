@@ -114,7 +114,7 @@ public class MeteoritesManager : MonoBehaviour
         }
 
         MeteoriteData myRandomMeteorite = allMeteorites[Random.Range(0, allMeteorites.Count)];
-        GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0), Quaternion.identity);
+        GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, -.1f), Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
     }
 
@@ -122,7 +122,9 @@ public class MeteoritesManager : MonoBehaviour
         if (loc.x < bounds.y && loc.x > bounds.x && loc.y < bounds.z && loc.y > bounds.w) {
             return true;
         } else {
+            Debug.LogError("outofbounds");
             return false;
+
         }
     }
 }
