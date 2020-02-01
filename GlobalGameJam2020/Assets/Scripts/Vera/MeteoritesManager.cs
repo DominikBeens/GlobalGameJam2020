@@ -18,6 +18,7 @@ public class MeteoritesManager : MonoBehaviour
     public Health h;
     public List<MeteoriteData> badMeteorites = new List<MeteoriteData>();
     public List<MeteoriteData> goodMeteorites = new List<MeteoriteData>();
+    public List<MeteoriteData> secretMeteorites = new List<MeteoriteData>();
 
     public GameObject test;
 
@@ -27,7 +28,7 @@ public class MeteoritesManager : MonoBehaviour
         if(instance == null) {
             instance = this;
         }
-        StartCoroutine(FirstMeteorite());
+
         //Camera.main.ViewportToWorldPoint()
         //Debug.LogError(Screen.width);
         Vector3 leftDown = new Vector3(0,0,20);
@@ -40,6 +41,11 @@ public class MeteoritesManager : MonoBehaviour
         bounds.z = rightDownWorld.y + 2;
         bounds.y = rightDownWorld.x + 2;
     }
+
+    private void Start() {
+        StartCoroutine(FirstMeteorite());
+    }
+
 
     private IEnumerator FirstMeteorite() {
         for (int i = 0; i < maxAmount; i++) {
@@ -86,6 +92,19 @@ public class MeteoritesManager : MonoBehaviour
         }
 
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
+        int r = Random.Range(0, 100);
+        if (r < 25) {
+
+            List<int> temp = h.GetNeeded();
+            if (temp.Count != 0) {
+
+                myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
+                Debug.Log(myRandomMeteorite.gObj);
+            }
+        }
+        if(Random.Range(0,1000) < 2) {
+            myRandomMeteorite = secretMeteorites[Random.Range(0, secretMeteorites.Count)];
+        }
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y,0.4f),Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards,new Vector2(minSpeed,maxSpeed));
     }

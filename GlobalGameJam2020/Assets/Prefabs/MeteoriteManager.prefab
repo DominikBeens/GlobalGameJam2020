@@ -92,6 +92,15 @@ MonoBehaviour:
     smallGObj: {fileID: 0}
     isPositiveM: 1
     id: 7
+  secretMeteorites:
+  - gObj: {fileID: 5178267159911876452, guid: fdeb0b77b2a3a9640b3b4f420e9ab2c8, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 0
+    id: 0
+  - gObj: {fileID: 5178267159911876452, guid: f25413c15367eb943aa76c34117e9aea, type: 3}
+    smallGObj: {fileID: 0}
+    isPositiveM: 0
+    id: 0
   test: {fileID: 5178267159911876452, guid: b248586b0d2257e47a824f04a2ec3433, type: 3}
   explosion: {fileID: 8371179729202189954, guid: 9f7903929ed99a24fbfdf1e1b2718dfa,
     type: 3}
