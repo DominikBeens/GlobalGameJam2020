@@ -14,9 +14,7 @@ public class MiniMeteorite : MonoBehaviour
 
     public void Fill(Vector2 goingLoc, float _speed) {
         going = goingLoc;
-        Debug.Log(going);
-        speed = _speed + Random.Range(1.1f , 3.0f)/100;
-        Debug.LogError(speed);
+        speed = _speed + Random.Range(1.1f , 3.0f);
         StartCoroutine(Move());
         StartCoroutine(Delay());
     }

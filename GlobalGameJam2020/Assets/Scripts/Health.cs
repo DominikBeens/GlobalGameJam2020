@@ -63,4 +63,13 @@ public class Health : MonoBehaviour {
         counterText.text = $"{active}/{healthIcons.Length}{suffix}";
         counterText.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
     }
+    public List<int> GetNeeded() {
+        List<int> toBe = new List<int>();
+        for (int i = 0; i < healthIcons.Length; i++) {
+            if (!healthIcons[i].IsActive) {
+                toBe.Add(i);
+            }
+        }
+        return toBe;
+    }
 }
