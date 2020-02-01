@@ -19,8 +19,15 @@ public class MiniMeteorite : MonoBehaviour
         StartCoroutine(Delay());
     }
 
+    public void SetDirection(Vector3 dir, float force) {
+
+        g = dir * 1000000 + MeteoritesManager.instance.Player.transform.position;
+        speed += 0.5f;
+    }
+
+    Vector3 g;
     private IEnumerator Move() {
-        Vector3 g = going;
+        g = going;
         Vector3 start = transform.position;
         while (transform.position != g) {
             yield return null;

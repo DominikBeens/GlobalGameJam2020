@@ -14,8 +14,7 @@ public class Meteorite : MonoBehaviour {
         myData = _data;
         going = goingLoc;
         speed = Random.Range(_speed.x, _speed.y);
-        turnSpeed = Random.Range(5.0f, 20.0f) / 100; ;
-        Debug.Log(turnSpeed);
+        turnSpeed = Random.Range(5.0f, 20.0f) / 100;
         StartCoroutine(Move());
     }
 
@@ -49,6 +48,7 @@ public class Meteorite : MonoBehaviour {
 
                 Vector3 dirA = g - transform.position;
                 Vector3 dirB = other.g - other.transform.position;
+
                 bool sameDir = false;
                 if (Vector3.Distance(dirA, dirB) < 20) {
                     sameDir = true;
