@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public enum MagnetState { Push, Pull }
 
@@ -18,6 +19,7 @@ public class Magnet : MonoBehaviour {
     [SerializeField] private Transform magnetRayHead;
     [SerializeField] private GameObject pushArm;
     [SerializeField] private GameObject pullArm;
+    [SerializeField] private GameObject sparks;
 
     private float shootTimer;
     private float shieldTimer;
@@ -29,6 +31,7 @@ public class Magnet : MonoBehaviour {
         lookAts = GetComponentsInChildren<LookAtMouse>();
         player = FindObjectOfType<Movement>();
         ToggleArmImage();
+        sparks.SetActive(false);
     }
 
     private void Start() {
@@ -63,8 +66,12 @@ public class Magnet : MonoBehaviour {
             ToggleLookAts(false);
             shootTimer = shootCooldown;
             Shoot();
+            sparks.transform.rotation = Quaternion.Euler(0, 0, Random.value * 360);
+            sparks.transform.localScale = Vector3.one * Random.Range(0.9f, 1.1f);
+            sparks.SetActive(true);
         } else {
             ToggleLookAts(true);
+            sparks.SetActive(false);
         }
     }
 
