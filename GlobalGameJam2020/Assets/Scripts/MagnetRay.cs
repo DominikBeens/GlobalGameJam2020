@@ -77,6 +77,11 @@ public class MagnetRay : MonoBehaviour {
             Vector3 direction = magnetState == MagnetState.Push ? transform.up : -transform.up;
             miniMeteorite.SetDirection(direction, pushPullForce);
         }
+        PowerUp powerUp = other.GetComponent<PowerUp>();
+        if (powerUp) {
+            Vector3 direction = magnetState == MagnetState.Push ? transform.up : -transform.up;
+            powerUp.SetDirection(direction, pushPullForce);
+        }
         DestroyRay();
     }
 

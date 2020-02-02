@@ -18,6 +18,13 @@ public class Movement : MonoBehaviour {
     public float testSize;
     public bool canMove;
 
+    public GameObject movementObjectDown;
+    public GameObject movementObjectDown1;
+    public GameObject movementObjectUp;
+    public GameObject movementObjectLeft;
+    public GameObject movementObjectRight;
+    public float timer;
+
     void Awake() {
         myRB = GetComponent<Rigidbody>();
         main = Camera.main;
@@ -30,6 +37,12 @@ public class Movement : MonoBehaviour {
 
     bool moving = false;
     void Update() {
+        if (timer > 0) {
+            timer -= Time.deltaTime;
+            if (timer < 0) {
+                InfiMoveie.InfiniMove = false;
+            }
+        }
         if (!canMove) { return; }
         moving = MovementUpdate();
 
@@ -73,7 +86,10 @@ public class Movement : MonoBehaviour {
 
             if (Input.GetAxis("Horizontal") > 0) {
                 myRB.AddForce(Vector3.right * movementSpeed);
-                movementTimer -= Time.deltaTime;
+                movementObjectRight.SetActive(true);
+                if (InfiMoveie.InfiniMove == false) {
+                    movementTimer -= Time.deltaTime;
+                }
                 hasMoved = true;
                 if (Input.GetButtonDown("Horizontal") && boosterTimer < 0) {
                     myRB.AddForce(Vector3.right * startMovementSpeed, ForceMode.Impulse);
@@ -84,7 +100,10 @@ public class Movement : MonoBehaviour {
 
             if (Input.GetAxis("Horizontal") < -0) {
                 myRB.AddForce(Vector3.left * movementSpeed);
-                movementTimer -= Time.deltaTime;
+                movementObjectLeft.SetActive(true);
+                if (InfiMoveie.InfiniMove == false) {
+                    movementTimer -= Time.deltaTime;
+                }
                 hasMoved = true;
                 if (Input.GetButtonDown("Horizontal") && boosterTimer < 0) {
                     myRB.AddForce(Vector3.left * startMovementSpeed, ForceMode.Impulse);
@@ -95,7 +114,10 @@ public class Movement : MonoBehaviour {
 
             if (Input.GetAxis("Vertical") > 0) {
                 myRB.AddForce(Vector3.up * movementSpeed);
-                movementTimer -= Time.deltaTime;
+                movementObjectUp.SetActive(true);
+                if (InfiMoveie.InfiniMove == false) {
+                    movementTimer -= Time.deltaTime;
+                }
                 hasMoved = true;
                 if (Input.GetButtonDown("Vertical") && boosterTimer < 0) {
                     myRB.AddForce(Vector3.up * startMovementSpeed, ForceMode.Impulse);
@@ -106,7 +128,11 @@ public class Movement : MonoBehaviour {
 
             if (Input.GetAxis("Vertical") < -0) {
                 myRB.AddForce(Vector3.down * movementSpeed);
-                movementTimer -= Time.deltaTime;
+                movementObjectDown.SetActive(true);
+                movementObjectDown1.SetActive(true);
+                if (InfiMoveie.InfiniMove == false) {
+                    movementTimer -= Time.deltaTime;
+                }
                 hasMoved = true;
                 if (Input.GetButtonDown("Vertical") && boosterTimer < 0) {
                     myRB.AddForce(Vector3.down * startMovementSpeed, ForceMode.Impulse);
