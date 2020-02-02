@@ -5,7 +5,7 @@ using UnityEngine;
 public class SlowMeteors : PowerUp
 {
     public override void Use() {
-        Debug.Log("Used Slow Meteors");
+        MeteoritesManager.instance.SlowTime(5);
 
     }
 }

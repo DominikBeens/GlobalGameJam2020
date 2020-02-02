@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class MeteoritesManager : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class MeteoritesManager : MonoBehaviour
     public List<MeteoriteData> goodMeteorites = new List<MeteoriteData>();
     public List<MeteoriteData> secretMeteorites = new List<MeteoriteData>();
     public List<GameObject> powerups = new List<GameObject>();
-
+    private List<GameObject> allMeteorites = new List<GameObject>();
     public GameObject test;
 
     public GameObject explosion;
@@ -109,6 +111,10 @@ public class MeteoritesManager : MonoBehaviour
             myRandomMeteorite = secretMeteorites[Random.Range(0, secretMeteorites.Count)];
         }
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y,0.4f),Quaternion.identity);
+        if (!myRandomMeteorite.isPositiveM) {
+            allMeteorites.Add(newM);
+        }
+
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards,new Vector2(minSpeed,maxSpeed));
     }
 
@@ -153,6 +159,9 @@ public class MeteoritesManager : MonoBehaviour
             myRandomMeteorite = secretMeteorites[Random.Range(0, secretMeteorites.Count)];
         }
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);
+        if (!myRandomMeteorite.isPositiveM) {
+            allMeteorites.Add(newM);
+        }
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
     }
 
@@ -172,6 +181,38 @@ public class MeteoritesManager : MonoBehaviour
         }
     }
 
+    private bool slow;
+    public PostProcessVolume ppv;
+    public CinemachineVirtualCamera cam;
+    private ChromaticAberration te;
+    public void SlowTime(float time) {
+        slow = true;
+
+        StartCoroutine(SlowDisable(time));
+    }
+
+    IEnumerator SlowDisable(float time) {
+        ppv.profile.TryGetSettings(out te);
+        CinemachineBasicMultiChannelPerlin noise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        while (te.intensity.value != 0.5f) {
+            Debug.Log("towards");
+            te.intensity.value = Mathf.MoveTowards(te.intensity.value, 0.5f,Time.deltaTime * 5);
+            noise.m_AmplitudeGain = Mathf.MoveTowards(noise.m_AmplitudeGain, 0.5f, Time.deltaTime * 6);
+            yield return null;
+        }
+        yield return new WaitForSeconds(time);
+        while (te.intensity.value != 0.07f) {
+            Debug.Log("away");
+            te.intensity.value = Mathf.MoveTowards(te.intensity.value, 0.07f, Time.deltaTime * 5);
+            noise.m_AmplitudeGain = Mathf.MoveTowards(noise.m_AmplitudeGain, 0, Time.deltaTime * 6);
+            yield return null;
+        }
+        slow = false;
+    }
+   
+    public bool GetSlow() {
+        return slow;
+    }
 
     float timeSinceLast;
     private void Update() {

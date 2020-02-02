@@ -30,11 +30,17 @@ public class Meteorite : MonoBehaviour {
         Vector3 start = transform.position;
         while (transform.position != g) {
             yield return null;
+
             transform.eulerAngles = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y ,(transform.eulerAngles.z + turnSpeed));
             if (Vector3.Distance(transform.position, start) > 5 && !MeteoritesManager.instance.Inbounds(transform.position)) {
                 break;
             }
-            transform.position = Vector3.MoveTowards(transform.position, g, speed * Time.deltaTime);
+            if (MeteoritesManager.instance.GetSlow()) {
+                transform.position = Vector3.MoveTowards(transform.position, g, (speed * Time.deltaTime)/3);
+            } else {
+                transform.position = Vector3.MoveTowards(transform.position, g, speed * Time.deltaTime);
+            }
+
         }
         MeteoritesManager.instance.NewMeteorite();
         Destroy(gameObject);

@@ -34,7 +34,11 @@ public class MiniMeteorite : MonoBehaviour
             if (Vector3.Distance(transform.position, start) > 5 && !MeteoritesManager.instance.Inbounds(transform.position)) {
                 break;
             }
-            transform.position = Vector3.MoveTowards(transform.position, g, speed * Time.deltaTime);
+            if (MeteoritesManager.instance.GetSlow()) {
+                transform.position = Vector3.MoveTowards(transform.position, g, (speed * Time.deltaTime) / 3);
+            } else {
+                transform.position = Vector3.MoveTowards(transform.position, g, speed * Time.deltaTime);
+            }
         }
         Destroy(gameObject);
     }
