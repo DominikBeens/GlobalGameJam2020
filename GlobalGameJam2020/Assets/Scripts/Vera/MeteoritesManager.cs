@@ -36,14 +36,18 @@ public class MeteoritesManager : MonoBehaviour
      
         Vector3 leftDownWorld = Camera.main.ViewportToWorldPoint(leftDown);
         Vector3 rightDownWorld = Camera.main.ViewportToWorldPoint(rightUp);
-        bounds.x = leftDownWorld.x - 2;
-        bounds.w = leftDownWorld.y - 2;
-        bounds.z = rightDownWorld.y + 2;
-        bounds.y = rightDownWorld.x + 2;
+        bounds.x = leftDownWorld.x - 3;
+        bounds.w = leftDownWorld.y - 3;
+        bounds.z = rightDownWorld.y + 3;
+        bounds.y = rightDownWorld.x + 3;
     }
 
     private void Start() {
         StartCoroutine(FirstMeteorite());
+        ppv.profile.TryGetSettings(out te);
+        CinemachineBasicMultiChannelPerlin noise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        te.intensity.value = 0.07f;
+        noise.m_AmplitudeGain = 0;
     }
 
 
@@ -172,6 +176,7 @@ public class MeteoritesManager : MonoBehaviour
     private void CreatePowerUp(Vector3 loc,Vector3 going) {
 
         GameObject newM = Instantiate(powerups[Random.Range(0,powerups.Count)], loc, Quaternion.identity);
+        Debug.Log(newM);
         newM.GetComponent<PowerUp>().Fill(going, new Vector2(minSpeed, maxSpeed));
     }
 
@@ -192,6 +197,12 @@ public class MeteoritesManager : MonoBehaviour
         List<GameObject> allMNow = new List<GameObject>();
         allMNow.AddRange(allMeteorites);
         allMeteorites.Clear();
+        CinemachineBasicMultiChannelPerlin noise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        while (noise.m_AmplitudeGain != 1) {
+            noise.m_AmplitudeGain = Mathf.MoveTowards(noise.m_AmplitudeGain, 1, Time.deltaTime);
+            yield return null;
+        }
+
         for (int i = 0; i < allMNow.Count; i++) {
             if(allMNow[i] != null) {
                 if(allMNow[i].GetComponent<Meteorite>() != null) {
@@ -200,8 +211,13 @@ public class MeteoritesManager : MonoBehaviour
                 if(allMNow[i].GetComponent<MiniMeteorite>() != null) {
                     allMNow[i].GetComponent<MiniMeteorite>().Explode();
                 }
-                yield return null;
+                yield return new WaitForSeconds(0.1f);
             }
+        }
+        yield return new WaitForSeconds(2);
+        while (noise.m_AmplitudeGain != 0) {
+            noise.m_AmplitudeGain = Mathf.MoveTowards(noise.m_AmplitudeGain, 0, Time.deltaTime);
+            yield return null;
         }
     }
 
