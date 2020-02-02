@@ -48,6 +48,13 @@ public class MiniMeteorite : MonoBehaviour
         GetComponent<Collider>().enabled = true;
     }
 
+    public void Explode() {
+        Vector3 tempPos = transform.position;
+        tempPos.z = -0.4f;
+        Instantiate(MeteoritesManager.instance.explosion, tempPos, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter(Collision collision) {
         Movement movement = collision.transform.GetComponent<Movement>();
         if (movement != null) {

@@ -165,6 +165,9 @@ public class MeteoritesManager : MonoBehaviour
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
     }
 
+    public void AddMeteor(GameObject met) {
+        allMeteorites.Add(met);
+    }
 
     private void CreatePowerUp(Vector3 loc,Vector3 going) {
 
@@ -178,6 +181,27 @@ public class MeteoritesManager : MonoBehaviour
         } else {
             return false;
 
+        }
+    }
+
+    public void ExplodeThemAll() {
+        StartCoroutine(ExplodeThemAllOnTurn());
+    }
+
+    private IEnumerator ExplodeThemAllOnTurn() {
+        List<GameObject> allMNow = new List<GameObject>();
+        allMNow.AddRange(allMeteorites);
+        allMeteorites.Clear();
+        for (int i = 0; i < allMNow.Count; i++) {
+            if(allMNow[i] != null) {
+                if(allMNow[i].GetComponent<Meteorite>() != null) {
+                    allMNow[i].GetComponent<Meteorite>().Explode(true);
+                }
+                if(allMNow[i].GetComponent<MiniMeteorite>() != null) {
+                    allMNow[i].GetComponent<MiniMeteorite>().Explode();
+                }
+                yield return null;
+            }
         }
     }
 

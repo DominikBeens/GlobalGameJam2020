@@ -111,16 +111,17 @@ public class Meteorite : MonoBehaviour {
         StartCoroutine(B());
     }
 
-    public void Explode() {
+    public void Explode(bool without = false) {
         Vector3 tempPos = transform.position;
         tempPos.z = -0.4f;
         Instantiate(MeteoritesManager.instance.explosion, tempPos, Quaternion.identity);
-        if(myData.smallGObj) {
+        if (myData.smallGObj && !without) {
             for (int i = 0; i < AmountSmall; i++) {
                 GameObject t = Instantiate(myData.smallGObj, transform.position, Quaternion.identity);
                 t.transform.parent = null;
                 Vector2 temp = new Vector2(Random.Range(g.x + 10, g.x - 10), Random.Range(g.y + 10, g.y - 10));
                 t.GetComponent<MiniMeteorite>().Fill(temp, speed);
+                MeteoritesManager.instance.AddMeteor(t);
             }
         }
 
