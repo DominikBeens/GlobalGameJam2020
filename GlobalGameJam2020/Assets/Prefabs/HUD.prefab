@@ -209,8 +209,8 @@ MonoBehaviour:
   - {fileID: 1875293943163027472}
   - {fileID: 8301579908648683694}
   playerMoveCooldownFill: {fileID: 3198622803828132202}
-  fullPlayerMoveCooldownColor: {r: 0.29436633, g: 0.4064502, b: 0.4245283, a: 1}
-  emptyPlayerMoveCooldownColor: {r: 0.107600555, g: 0.22859424, b: 0.24528301, a: 1}
+  fullPlayerMoveCooldownColor: {r: 0.5188679, g: 0.23251157, b: 0.30519712, a: 1}
+  emptyPlayerMoveCooldownColor: {r: 0.23584908, g: 0.11013707, b: 0.1438647, a: 1}
   playerMoveCooldownShakeStrength: 3
   playerMoveCooldownText: {fileID: 4847465379092538800}
 --- !u!1 &2040938336212846488
@@ -238,7 +238,7 @@ RectTransform:
   m_GameObject: {fileID: 2040938336212846488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.9, z: 1}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 3850384505831278071}
   - {fileID: 8954627647776919215}
@@ -279,7 +279,7 @@ RectTransform:
   m_GameObject: {fileID: 2250326523867513548}
   m_LocalRotation: {x: -0, y: -0, z: 0.7070779, w: 0.70713574}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.1, z: 1}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 8033848574408798518}
   m_RootOrder: 3
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.36765754, g: 0.49177906, b: 0.509434, a: 1}
+  m_Color: {r: 0.5188679, g: 0.23251157, b: 0.30519712, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1086,7 +1086,7 @@ RectTransform:
   m_GameObject: {fileID: 4037798934046454817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.1, z: 1}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 8954627647776919215}
   m_RootOrder: 3
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.36765754, g: 0.49177906, b: 0.509434, a: 1}
+  m_Color: {r: 0.5188679, g: 0.23251157, b: 0.30519712, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2138,7 +2138,7 @@ RectTransform:
   m_GameObject: {fileID: 8919822985788669470}
   m_LocalRotation: {x: -0, y: -0, z: 0.7070779, w: 0.70713574}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.1, z: 1}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 8033848574408798518}
   m_RootOrder: 4
