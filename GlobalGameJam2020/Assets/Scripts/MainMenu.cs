@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] private Transform spaceman;
     [SerializeField] private GameObject intro;
     [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject countDown;
 
     private Sequence spacemanSequence;
     private Sequence spaceshipSequence;
@@ -45,7 +46,7 @@ public class MainMenu : MonoBehaviour {
         playButton.interactable = false;
         spaceShip.DOShakePosition(20f, 0.3f, 3).SetDelay(2).SetEase(Ease.InSine);
         spaceshipSequence.Kill();
-
+        countDown.SetActive(true);
         SetLiftoffText(3);
         yield return new WaitForSeconds(1f);
         SetLiftoffText(2);
