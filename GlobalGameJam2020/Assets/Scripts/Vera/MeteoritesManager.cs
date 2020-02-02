@@ -50,6 +50,11 @@ public class MeteoritesManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(.5f, 1.5f));
         }
         yield return null;
+
+        while (true) {
+            yield return new WaitForSeconds(Random.Range(60, 90));
+            NewMeteorite();
+        }
     }
 
 
@@ -85,11 +90,12 @@ public class MeteoritesManager : MonoBehaviour
 
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         int r = Random.Range(0, 100);
-        if (r < 25) {
+        if (r < (timeSinceLast / 2) + 10) {
             List<int> temp = h.GetNeeded();
             if (temp.Count != 0) {
                 myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
             }
+            timeSinceLast = 0;
         }
         if(Random.Range(0,1000) < 2) {
             myRandomMeteorite = secretMeteorites[Random.Range(0, secretMeteorites.Count)];
@@ -121,13 +127,13 @@ public class MeteoritesManager : MonoBehaviour
 
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         int r = Random.Range(0, 100);
-        if (r < 25) {
-
+        if (r < (timeSinceLast /2) + 10) {
             List<int> temp = h.GetNeeded();
             if(temp.Count != 0) {
                 
                 myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
             }
+            timeSinceLast = 0;
         } 
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
@@ -140,6 +146,12 @@ public class MeteoritesManager : MonoBehaviour
             return false;
 
         }
+    }
+
+
+    float timeSinceLast;
+    private void Update() {
+        timeSinceLast += Time.deltaTime;
     }
 }
 
