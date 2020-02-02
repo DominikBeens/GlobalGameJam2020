@@ -42,7 +42,7 @@ public class PowerUp : MonoBehaviour {
         if (collision.gameObject.GetComponent<Movement>() != null) {
             Use();
             MeteoritesManager.instance.NewMeteorite();
-            GetComponent<MeshRenderer>().enabled = false;
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
             GetComponent<Collider>().enabled = false;
         } else if (collision.gameObject.GetComponent<MiniMeteorite>() != null || collision.gameObject.GetComponent<PowerUp>() != null) {
             MeteoritesManager.instance.NewMeteorite();  
