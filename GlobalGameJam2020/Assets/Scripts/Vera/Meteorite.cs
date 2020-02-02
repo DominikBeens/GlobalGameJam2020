@@ -101,7 +101,7 @@ public class Meteorite : MonoBehaviour {
         StartCoroutine(B());
     }
 
-    private void Explode() {
+    public void Explode() {
         Vector3 tempPos = transform.position;
         tempPos.z = -0.4f;
         Instantiate(MeteoritesManager.instance.explosion, tempPos, Quaternion.identity);
