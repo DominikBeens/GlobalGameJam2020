@@ -8,15 +8,13 @@ public class MiniMeteorite : MonoBehaviour
     private float speed;
     private new Rigidbody rigidbody;
 
-    private void Awake() {
-        rigidbody = GetComponent<Rigidbody>();
-    }
-
     public void Fill(Vector2 goingLoc, float _speed) {
+        rigidbody = GetComponent<Rigidbody>();
         going = goingLoc;
         speed = _speed + Random.Range(1.1f , 3.0f);
         StartCoroutine(Move());
         StartCoroutine(Delay());
+        transform.localScale = Vector3.one * Random.Range(0.85f, 1.15f);
     }
 
     public void SetDirection(Vector3 dir, float force) {
@@ -58,7 +56,6 @@ public class MiniMeteorite : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         Movement movement = collision.transform.GetComponent<Movement>();
         if (movement != null) {
-            movement.SetVelocity(rigidbody.velocity * 2);
             Destroy(gameObject);
         }
     }

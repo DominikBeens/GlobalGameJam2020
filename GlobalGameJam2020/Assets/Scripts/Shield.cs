@@ -23,9 +23,7 @@ public class Shield : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         Meteorite meteorite = other.GetComponent<Meteorite>();
-        if (meteorite) {
-            meteorite.Explode();
-        }
+        meteorite?.Explode();
         MiniMeteorite miniMeteorite = other.GetComponent<MiniMeteorite>();
         if (miniMeteorite) {
             Destroy(miniMeteorite.gameObject);

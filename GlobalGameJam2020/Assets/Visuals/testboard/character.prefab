@@ -12852,7 +12852,7 @@ HingeJoint:
   m_Anchor: {x: -0.25, y: 0.15, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.4902017, y: 0.069433436, z: -0.06635094}
+  m_ConnectedAnchor: {x: 1.490202, y: 0.069433615, z: -0.06635094}
   m_UseSpring: 1
   m_Spring:
     spring: 50
@@ -13100,7 +13100,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.17141461, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.6810138, y: -2.2904701, z: -0.066999435}
+  m_ConnectedAnchor: {x: 0.68101406, y: -2.2904701, z: -0.066999435}
   m_UseSpring: 1
   m_Spring:
     spring: 45
@@ -13239,7 +13239,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: -1.3332826, y: 1.5980967, z: -0.035049986}
   m_UseSpring: 1
   m_Spring:
-    spring: 5
+    spring: 10
     damper: 0
     targetPosition: 7.5
   m_UseMotor: 0
@@ -13258,7 +13258,7 @@ HingeJoint:
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
-  m_MassScale: 20
+  m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &8390246206577325393
 GameObject:
@@ -13372,7 +13372,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.16103983, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.4124593, y: -1.7525468, z: -0.07319499}
+  m_ConnectedAnchor: {x: 1.4124594, y: -1.7525469, z: -0.07319499}
   m_UseSpring: 1
   m_Spring:
     spring: 90
@@ -13895,10 +13895,10 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: -0.11, z: 0}
   m_Axis: {x: 0, y: 0, z: -5}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.8642813, y: 1.4862094, z: -0.037112676}
+  m_ConnectedAnchor: {x: 1.8642815, y: 1.4862094, z: -0.037112676}
   m_UseSpring: 1
   m_Spring:
-    spring: 5
+    spring: 10
     damper: 0
     targetPosition: -7.5
   m_UseMotor: 0
@@ -13917,7 +13917,7 @@ HingeJoint:
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
-  m_MassScale: 20
+  m_MassScale: 1
   m_ConnectedMassScale: 1
 --- !u!1 &9162402554064435126
 GameObject:

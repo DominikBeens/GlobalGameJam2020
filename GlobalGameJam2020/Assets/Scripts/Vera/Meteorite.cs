@@ -16,6 +16,7 @@ public class Meteorite : MonoBehaviour {
         speed = Random.Range(_speed.x, _speed.y);
         turnSpeed = Random.Range(5.0f, 20.0f) / 100;
         StartCoroutine(Move());
+        transform.localScale = Vector3.one * Random.Range(0.85f, 1.15f);
     }
 
     public void SetDirection(Vector3 dir,float force) {
