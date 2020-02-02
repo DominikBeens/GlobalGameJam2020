@@ -1246,6 +1246,11 @@ MonoBehaviour:
   test: {fileID: 0}
   testSize: 0.0585
   canMove: 0
+  movementObjectDown: {fileID: 0}
+  movementObjectDown1: {fileID: 0}
+  movementObjectUp: {fileID: 0}
+  movementObjectLeft: {fileID: 0}
+  movementObjectRight: {fileID: 0}
 --- !u!114 &76432267
 MonoBehaviour:
   m_ObjectHideFlags: 0
