@@ -4991,6 +4991,75 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &5574685395053586633
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 440146150549696859, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_Name
+      value: MeteorSlow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.6410613
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35141316
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.55363
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6348956193292317669, guid: 2f7f85876db93534c8290fad53b49420,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f7f85876db93534c8290fad53b49420, type: 3}
 --- !u!4 &6829202532685426293
 Transform:
   m_ObjectHideFlags: 0

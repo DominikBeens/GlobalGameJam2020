@@ -24,7 +24,7 @@ public class MeteoritesManager : MonoBehaviour
     public GameObject test;
 
     public GameObject explosion;
-
+    public bool testPowerups;
     private void Awake() {
         if(instance == null) {
             instance = this;
@@ -88,7 +88,10 @@ public class MeteoritesManager : MonoBehaviour
                 y = bounds.y;
             }
         }
-
+        if (testPowerups) {
+            CreatePowerUp(new Vector3(x, y, 0.4f), goingTowards);
+            return;
+        }
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         int r = Random.Range(0, 100);
         if (r < timeSinceLast / 2) {
@@ -99,7 +102,8 @@ public class MeteoritesManager : MonoBehaviour
             timeSinceLast = 0;
         }
         else if (Random.Range(0,100) < 5) {
-
+            CreatePowerUp(new Vector3(x, y, 0.4f), goingTowards);
+            return;
         }
         if(Random.Range(0,1000) < 2) {
             myRandomMeteorite = secretMeteorites[Random.Range(0, secretMeteorites.Count)];
@@ -128,7 +132,10 @@ public class MeteoritesManager : MonoBehaviour
                 y = bounds.y;
             }
         }
-
+        if (testPowerups) {
+            CreatePowerUp(new Vector3(x, y, 0.4f), goingTowards);
+            return;
+        }
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         int r = Random.Range(0, 100);
         if (r < timeSinceLast /2) {
@@ -138,15 +145,22 @@ public class MeteoritesManager : MonoBehaviour
                 myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
             }
             timeSinceLast = 0;
-        } 
+        } else if (Random.Range(0, 100) < 5) {
+            CreatePowerUp(new Vector3(x, y, 0.4f), goingTowards);
+            return;
+        }
+        if (Random.Range(0, 1000) < 2) {
+            myRandomMeteorite = secretMeteorites[Random.Range(0, secretMeteorites.Count)];
+        }
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
     }
 
 
-    private void CreatePowerUp(Vector3 loc) {
+    private void CreatePowerUp(Vector3 loc,Vector3 going) {
 
-        //GameObject newM = Instantiate(powerups., new Vector3(x, y, 0.4f), Quaternion.identity);
+        GameObject newM = Instantiate(powerups[Random.Range(0,powerups.Count)], loc, Quaternion.identity);
+        newM.GetComponent<PowerUp>().Fill(going, new Vector2(minSpeed, maxSpeed));
     }
 
     public bool Inbounds(Vector3 loc){

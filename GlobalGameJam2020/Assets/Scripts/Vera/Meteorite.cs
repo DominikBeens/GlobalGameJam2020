@@ -91,6 +91,10 @@ public class Meteorite : MonoBehaviour {
                 Health.Instance.Decrement();
                 Explode();
             }
+        } else if(collision.gameObject.GetComponent<PowerUp>() != null) {
+            bounced = true;
+            Destroy(collision.gameObject);
+            MeteoritesManager.instance.NewMeteorite();
         }
     }
 
