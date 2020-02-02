@@ -69,6 +69,7 @@ public class BackgroundObjectSpawner : MonoBehaviour {
     private void SpawnObject(BackgroundObject obj, Vector3 position) {
         GameObject newObject = Instantiate(obj.Prefab, position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         newObject.transform.SetParent(transform);
+        newObject.transform.localScale = Vector3.one * Random.Range(obj.MinScale, obj.MaxScale);
         spawnedObjects.Add(new Tuple<BackgroundObject, Vector3>(obj, position));
     }
 }

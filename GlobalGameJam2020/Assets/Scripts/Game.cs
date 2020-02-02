@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class Game : MonoBehaviour {
 
@@ -41,10 +42,7 @@ public class Game : MonoBehaviour {
         if (movement) {
             movement.canMove = false;
             Vector3 player = movement.transform.position;
-            GameObject firstExplosion = Instantiate(MeteoritesManager.instance.explosion, player, Quaternion.Euler(0, 0, Random.value * 360));
-            firstExplosion.transform.localScale = Vector3.one * 3f;
-            movement.gameObject.SetActive(false);
-            movement.GetComponent<SortOfParent>().child.gameObject.SetActive(false);
+            ExplodePlayer(movement);
             for (int i = 0; i < defeatExplosions; i++) {
                 Vector2 randomInCircle = Random.insideUnitCircle;
                 float range = defeatExplosionStartRange + (i + 0.5f);
@@ -61,5 +59,16 @@ public class Game : MonoBehaviour {
         ScreenFader.Instance.FadeIn(1, () => {
             SceneManager.LoadScene("Game");
         }, true);
+    }
+
+    private void ExplodePlayer(Movement movement) {
+        GameObject firstExplosion = Instantiate(MeteoritesManager.instance.explosion, movement.transform.position, Quaternion.Euler(0, 0, Random.value * 360));
+        firstExplosion.transform.localScale = Vector3.one * 3f;
+
+        movement.gameObject.SetActive(false);
+        Transform characterJointBase = movement.GetComponent<SortOfParent>().child;
+        characterJointBase.DOPunchPosition(Vector3.up * 2, 0.2f).OnComplete(() => { 
+            characterJointBase.gameObject.SetActive(false);
+        });
     }
 }

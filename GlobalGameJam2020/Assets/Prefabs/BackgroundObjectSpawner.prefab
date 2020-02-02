@@ -52,9 +52,25 @@ MonoBehaviour:
     MaxZPosition: 5
     SpawnAmount: 1
     ClearRange: 13
+  - Prefab: {fileID: 4399687684307599319, guid: a75120c652d2e334f9e7996a23f7c38a,
+      type: 3}
+    MinScale: 0.7
+    MaxScale: 1.1
+    MinZPosition: 10
+    MaxZPosition: 5
+    SpawnAmount: 1
+    ClearRange: 13
+  - Prefab: {fileID: 1238162453969745692, guid: 6ea1e3a4a6948174da1425138afea4f5,
+      type: 3}
+    MinScale: 0.7
+    MaxScale: 1.1
+    MinZPosition: 10
+    MaxZPosition: 5
+    SpawnAmount: 1
+    ClearRange: 13
   - Prefab: {fileID: 431323177483821932, guid: 2aa269688fde6a64d8a1162fb4cfaea4, type: 3}
-    MinScale: 1
-    MaxScale: 2
+    MinScale: 0.8
+    MaxScale: 1.5
     MinZPosition: 10
     MaxZPosition: 5
     SpawnAmount: 50
