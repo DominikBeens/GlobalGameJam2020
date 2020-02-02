@@ -2865,7 +2865,7 @@ PrefabInstance:
     - target: {fileID: 7423780587823163220, guid: 5916a9f37ed0a724db67613484b52701,
         type: 3}
       propertyPath: powerups.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7423780587823163220, guid: 5916a9f37ed0a724db67613484b52701,
         type: 3}
@@ -2916,7 +2916,7 @@ PrefabInstance:
     - target: {fileID: 7423780587823163220, guid: 5916a9f37ed0a724db67613484b52701,
         type: 3}
       propertyPath: testPowerups
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7423780587823163220, guid: 5916a9f37ed0a724db67613484b52701,
         type: 3}
@@ -2929,6 +2929,18 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1958971971}
+    - target: {fileID: 7423780587823163220, guid: 5916a9f37ed0a724db67613484b52701,
+        type: 3}
+      propertyPath: powerups.Array.data[1]
+      value: 
+      objectReference: {fileID: 440146150549696859, guid: a2fa7ffc8e0867a47893eb68fc7a29c4,
+        type: 3}
+    - target: {fileID: 7423780587823163220, guid: 5916a9f37ed0a724db67613484b52701,
+        type: 3}
+      propertyPath: powerups.Array.data[2]
+      value: 
+      objectReference: {fileID: 440146150549696859, guid: 09f4be149ba430f4c8c6e833f85fda9a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5916a9f37ed0a724db67613484b52701, type: 3}
 --- !u!1001 &1638296826224111661

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4557454296213810977}
   - component: {fileID: 2836093632020349535}
   - component: {fileID: 832211557270287799}
-  - component: {fileID: 8111759633708508895}
+  - component: {fileID: 2718483460420992597}
   m_Layer: 0
-  m_Name: MeteorSlow
+  m_Name: UnlimitedMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0da32916c54ef0545bd79b4735649ae8, type: 2}
+  - {fileID: 2100000, guid: a744a1d8c1c7f3d4a95d25af7e642d4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd325e8c091ae424897d5f4f36083404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8111759633708508895
+--- !u!114 &2718483460420992597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 440146150549696859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9e648c0d6f8334e87d53181332dcdc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b250b5b11240f24ca8865eafc2091c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
   turnSpeed: 0
   bounced: 0
+  timer: 0

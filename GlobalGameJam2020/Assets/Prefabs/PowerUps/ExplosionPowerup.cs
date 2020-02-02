@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowMeteors : PowerUp
+public class ExplosionPowerup : PowerUp
 {
     public override void Use() {
-        MeteoritesManager.instance.SlowTime(5);
+        MeteoritesManager.instance.ExplodeThemAll();
         Destroy(gameObject);
     }
 }
