@@ -19,6 +19,7 @@ public class MeteoritesManager : MonoBehaviour
     public List<MeteoriteData> badMeteorites = new List<MeteoriteData>();
     public List<MeteoriteData> goodMeteorites = new List<MeteoriteData>();
     public List<MeteoriteData> secretMeteorites = new List<MeteoriteData>();
+    public List<GameObject> powerups = new List<GameObject>();
 
     public GameObject test;
 
@@ -90,12 +91,15 @@ public class MeteoritesManager : MonoBehaviour
 
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         int r = Random.Range(0, 100);
-        if (r < (timeSinceLast / 2) + 10) {
+        if (r < timeSinceLast / 2) {
             List<int> temp = h.GetNeeded();
             if (temp.Count != 0) {
                 myRandomMeteorite = goodMeteorites[temp[Random.Range(0, temp.Count)]];
             }
             timeSinceLast = 0;
+        }
+        else if (Random.Range(0,100) < 5) {
+
         }
         if(Random.Range(0,1000) < 2) {
             myRandomMeteorite = secretMeteorites[Random.Range(0, secretMeteorites.Count)];
@@ -127,7 +131,7 @@ public class MeteoritesManager : MonoBehaviour
 
         MeteoriteData myRandomMeteorite = badMeteorites[Random.Range(0, badMeteorites.Count)];
         int r = Random.Range(0, 100);
-        if (r < (timeSinceLast /2) + 10) {
+        if (r < timeSinceLast /2) {
             List<int> temp = h.GetNeeded();
             if(temp.Count != 0) {
                 
@@ -137,6 +141,12 @@ public class MeteoritesManager : MonoBehaviour
         } 
         GameObject newM = Instantiate(myRandomMeteorite.gObj, new Vector3(x, y, 0.4f), Quaternion.identity);
         newM.GetComponent<Meteorite>().Fill(myRandomMeteorite, goingTowards, new Vector2(minSpeed, maxSpeed));
+    }
+
+
+    private void CreatePowerUp(Vector3 loc) {
+
+        //GameObject newM = Instantiate(powerups., new Vector3(x, y, 0.4f), Quaternion.identity);
     }
 
     public bool Inbounds(Vector3 loc){
@@ -154,6 +164,9 @@ public class MeteoritesManager : MonoBehaviour
         timeSinceLast += Time.deltaTime;
     }
 }
+
+
+
 
 [System.Serializable]
 public class MeteoriteData {
